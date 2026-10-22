@@ -1,0 +1,17 @@
+.panel.task-launches { border: 1px solid var(--line); border-top: 2px solid var(--accent); border-radius: 6px; margin-top: 18px; padding: 18px; background:var(--panel); min-width:0; }
+.task-launches .section-head h2 { margin-top:0; }
+.task-launches form { display: grid; gap: 12px; max-width: 720px; }
+.task-launches label, .task-launches fieldset { display: grid; gap: 6px; }
+.task-launches fieldset { border: 0; padding: 0; margin: 0; }
+.task-launches fieldset label { display: block; }
+.task-launches select, .task-launches textarea { width: 100%; }
+.task-launches textarea { padding:8px 10px; background:var(--bg); color:var(--text); border:1px solid var(--line); border-radius:4px; font:inherit; resize:vertical; }
+.task-launches button[type="submit"] { justify-self:start; background:var(--accent-bg); }
+.task-launch-history { list-style: none; padding: 0; margin: 16px 0 0; display: grid; gap: 8px; }
+.task-launch-row { border-top: 1px solid var(--line); padding-top: 12px; display: grid; gap: 5px; overflow-wrap:anywhere; }
+.task-launch-row strong { color: var(--accent); }
+.task-launch-row[data-state="completed"] strong { color:var(--green); }
+.task-launch-row[data-state="failed"] strong,.task-launch-row[data-state="routing_conflict"] strong { color:var(--red); }
+.task-launch-row p { margin: 3px 0; }
+
+.task-launch-result { white-space: pre-wrap; }

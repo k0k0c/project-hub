@@ -1,0 +1,12 @@
+#!/bin/sh
+set -eu
+
+remote="$1"
+while read -r local_ref local_oid remote_ref remote_oid; do
+    python scripts/git_safety_check.py push "$remote" "$local_ref" "$remote_ref"
+done
+
+# Keep temporary-repository tests independent from the repository being pushed.
+unset GIT_DIR GIT_WORK_TREE GIT_INDEX_FILE GIT_PREFIX
+
+python scripts/project_hub_check_publish.py --profile full

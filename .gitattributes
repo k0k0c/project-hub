@@ -1,0 +1,7 @@
+# Preserve pinned third-party distribution bytes and upstream hashes.
+# Source code still uses Git's normal whitespace checks.
+tools/project-portal/web/vendor/layout-base.js whitespace=-trailing-space
+tools/project-portal/web/vendor/cose-base.js whitespace=-trailing-space
+tools/project-portal/web/vendor/cytoscape-fcose.js whitespace=-trailing-space
+tools/project-portal/web/vendor/elk-api.js whitespace=-trailing-space
+tools/project-portal/web/vendor/elk-worker.min.js whitespace=-trailing-space

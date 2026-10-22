@@ -1,0 +1,33 @@
+.task-editor { width: min(880px, calc(100vw - 24px)); max-height: calc(100dvh - 32px); padding: 0; border: 1px solid var(--line, #3c434a); border-radius: 6px; background: var(--panel, #1b2024); color: inherit; }
+.task-editor::backdrop { background: #0009; }
+.task-editor form { display: flex; flex-direction: column; max-height: calc(100dvh - 36px); }
+.task-editor header, .task-editor footer { display: flex; align-items: center; gap: 10px; padding: 12px 16px; flex: none; }
+.task-editor header { border-bottom: 1px solid var(--line, #3c434a); }
+.task-editor header h2 { margin: 0; font-size: 18px; flex: 1; }
+.task-editor footer { border-top: 1px solid var(--line, #3c434a); justify-content: flex-end; }
+.editor-fields { overflow-y: auto; padding: 16px; display: grid; gap: 16px; }
+.edit-field { display: grid; gap: 5px; min-width: 0; font-size: 12px; }
+.edit-field input, .edit-field select, .edit-field textarea, .editor-source-row input, .editor-link-row input, .editor-link-row select { width: 100%; min-width: 0; box-sizing: border-box; padding: 7px 9px; color: inherit; background: var(--bg, #111619); border: 1px solid var(--line, #3c434a); border-radius: 4px; font: inherit; }
+.edit-field textarea { resize: vertical; min-height: 70px; }
+.editor-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+.task-editor fieldset { min-width: 0; padding: 12px; border: 1px solid var(--line, #3c434a); }
+.task-editor legend { font-size: 13px; padding: 0 6px; }
+.editor-source-row, .editor-link-row { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 2fr) 32px; gap: 7px; margin-bottom: 8px; }
+.editor-link-row { grid-template-columns: 130px minmax(0, 2fr) minmax(0, 1fr) 32px; }
+.editor-check { display: flex; align-items: center; gap: 8px; font-size: 13px; margin-bottom: 6px; }
+.editor-error { color: #ffad9d; padding: 0 16px; overflow-wrap: anywhere; }
+.task-sources, .task-relations { margin-top: 24px; padding-top: 18px; border-top: 1px solid var(--line, #3c434a); }
+.task-sources .section-head { margin-bottom: 10px; }
+.task-sources h2, .task-relations h2 { font-size: 17px; }
+.relation-list { display: flex; flex-wrap: wrap; gap: 8px 20px; }
+.relation-list a { font-size: 13px; }
+.card-dates { display: inline-flex; gap: 8px; color: var(--muted, #9ca5ac); font-size: 11px; flex-wrap: wrap; }
+.task-progress-metric { flex-wrap: wrap; align-items: center; }
+.checkpoint-batch .editor-fields { grid-template-columns: minmax(0, 1fr); overflow-wrap: anywhere; }
+.checkpoint-batch [data-review] { min-width: 0; }
+.checkpoint-batch code { white-space: normal; overflow-wrap: anywhere; }
+.checkpoint-batch fieldset .edit-field { margin-bottom: 10px; }
+.checkpoint-batch fieldset .edit-field > span { display: flex; align-items: flex-start; gap: 8px; }
+.checkpoint-batch input[type="checkbox"] { width: auto; flex: none; margin: 2px 0; }
+.checkpoint-batch fieldset small { padding-inline-start: 22px; color: var(--muted, #9ca5ac); }
+@media (max-width: 600px) { .editor-grid { grid-template-columns: 1fr; } .editor-link-row { grid-template-columns: minmax(0,1fr) minmax(0,1fr) 32px; } .editor-link-row [data-link-project] { grid-column: 1 / 3; grid-row: 2; } .editor-link-row button { grid-column: 3; grid-row: 1; } .task-editor footer { flex-wrap: wrap; } }

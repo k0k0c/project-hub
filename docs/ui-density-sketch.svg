@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1500" height="860" viewBox="0 0 1500 860">
+  <rect width="1500" height="860" fill="#15191e"/>
+  <text x="56" y="60" fill="#f4f7fb" font-family="Segoe UI,Arial" font-size="28" font-weight="600">Project Hub · эскиз компактного UI</text>
+  <text x="56" y="92" fill="#8fa1b5" font-family="Segoe UI,Arial" font-size="15">Визуальная концепция до реализации: плотнее, яснее, без вложенных скроллов</text>
+  <g font-family="Segoe UI,Arial">
+    <rect x="56" y="132" width="430" height="650" rx="8" fill="#20262d" stroke="#394552"/>
+    <text x="80" y="170" fill="#8fa1b5" font-size="12" letter-spacing="2">ОБЗОР ПРОЕКТА</text>
+    <text x="80" y="210" fill="#f4f7fb" font-size="20" font-weight="600">Карточка задачи</text>
+    <rect x="80" y="236" width="382" height="250" rx="6" fill="#252c34" stroke="#4d6072"/>
+    <text x="102" y="274" fill="#f4f7fb" font-size="17" font-weight="600">Иерархия задач, приоритеты</text>
+    <text x="102" y="298" fill="#f4f7fb" font-size="17" font-weight="600">и типы в Project Hub</text>
+    <rect x="102" y="322" width="78" height="25" rx="12" fill="#263746" stroke="#4f96c6"/><text x="118" y="339" fill="#73c0f2" font-size="12">● В работе</text>
+    <rect x="188" y="322" width="103" height="25" rx="12" fill="#263a34" stroke="#65af8f"/><text x="202" y="339" fill="#8ed3b1" font-size="12">▶ Агент работает</text>
+    <rect x="102" y="365" width="48" height="23" rx="4" fill="#303944"/><text x="115" y="381" fill="#c3cfdb" font-size="12">Task</text>
+    <rect x="158" y="365" width="70" height="23" rx="4" fill="#44382f"/><text x="170" y="381" fill="#f0bd80" font-size="12">Critical</text>
+    <text x="102" y="418" fill="#9eb0c1" font-size="13">1 из 2 этапов · 50%</text>
+    <rect x="102" y="435" width="338" height="5" rx="2" fill="#34414d"/><rect x="102" y="435" width="169" height="5" rx="2" fill="#72b1d2"/>
+    <line x1="102" y1="462" x2="440" y2="462" stroke="#394552"/>
+    <text x="102" y="480" fill="#8fa1b5" font-size="12">Готовность — · Время —</text>
+    <circle cx="391" cy="476" r="14" fill="#29323c" stroke="#59738a"/><text x="385" y="481" fill="#b9d9ef" font-size="16">☆</text>
+    <circle cx="426" cy="476" r="14" fill="#29323c" stroke="#59738a"/><text x="420" y="481" fill="#b9d9ef" font-size="14">⧉</text>
+    <text x="80" y="535" fill="#8fa1b5" font-size="13">Одна строка действий вместо четырёх крупных кнопок</text>
+
+    <rect x="535" y="132" width="430" height="650" rx="8" fill="#20262d" stroke="#394552"/>
+    <text x="559" y="170" fill="#8fa1b5" font-size="12" letter-spacing="2">СТРАНИЦА ЗАДАЧИ</text>
+    <text x="559" y="202" fill="#74c4f5" font-size="13">← Все задачи</text><text x="850" y="202" fill="#9eb0c1" font-size="12">HUB-310E4E…</text>
+    <text x="559" y="250" fill="#f4f7fb" font-size="21" font-weight="600">Иерархия задач, приоритеты</text>
+    <text x="559" y="276" fill="#f4f7fb" font-size="21" font-weight="600">и типы в Project Hub</text>
+    <rect x="559" y="302" width="78" height="25" rx="12" fill="#263746" stroke="#4f96c6"/><text x="575" y="319" fill="#73c0f2" font-size="12">● В работе</text>
+    <rect x="645" y="302" width="103" height="25" rx="12" fill="#263a34" stroke="#65af8f"/><text x="659" y="319" fill="#8ed3b1" font-size="12">▶ Агент работает</text>
+    <text x="559" y="355" fill="#9eb0c1" font-size="13">1 / 2 этапов · 50% · обновлено сегодня</text>
+    <line x1="559" y1="378" x2="941" y2="378" stroke="#394552"/>
+    <text x="559" y="414" fill="#8fa1b5" font-size="12">ТИП</text><text x="689" y="414" fill="#8fa1b5" font-size="12">ПРИОРИТЕТ</text><text x="839" y="414" fill="#8fa1b5" font-size="12">РОДИТЕЛЬ</text>
+    <rect x="559" y="426" width="108" height="34" rx="4" fill="#252c34" stroke="#4d6072"/><text x="573" y="448" fill="#dce5ed" font-size="13">Task  ˅</text>
+    <rect x="689" y="426" width="128" height="34" rx="4" fill="#252c34" stroke="#4d6072"/><text x="703" y="448" fill="#dce5ed" font-size="13">Critical  ˅</text>
+    <rect x="839" y="426" width="102" height="34" rx="4" fill="#252c34" stroke="#4d6072"/><text x="853" y="448" fill="#dce5ed" font-size="13">Корень ˅</text>
+    <text x="559" y="505" fill="#74c4f5" font-size="13">Закрыть задачу</text><text x="559" y="560" fill="#8fa1b5" font-size="13">Ниже — план, зависимости и история без отдельной панели готовности</text>
+
+    <rect x="1014" y="132" width="430" height="650" rx="8" fill="#20262d" stroke="#394552"/>
+    <text x="1038" y="170" fill="#8fa1b5" font-size="12" letter-spacing="2">ЗАДАЧИ ПРОЕКТА</text>
+    <text x="1038" y="210" fill="#f4f7fb" font-size="22" font-weight="600">Фильтры и сортировка</text>
+    <rect x="1038" y="240" width="382" height="128" rx="6" fill="#252c34" stroke="#4d6072"/>
+    <text x="1054" y="263" fill="#8fa1b5" font-size="11">ФИЛЬТРЫ</text>
+    <rect x="1054" y="278" width="170" height="32" rx="4" fill="#20262d" stroke="#4d6072"/><text x="1067" y="299" fill="#dce5ed" font-size="12">Все статусы ˅</text>
+    <rect x="1234" y="278" width="170" height="32" rx="4" fill="#20262d" stroke="#4d6072"/><text x="1247" y="299" fill="#dce5ed" font-size="12">Все типы ˅</text>
+    <rect x="1054" y="320" width="170" height="32" rx="4" fill="#20262d" stroke="#4d6072"/><text x="1067" y="341" fill="#dce5ed" font-size="12">Все приоритеты ˅</text>
+    <rect x="1234" y="320" width="170" height="32" rx="4" fill="#20262d" stroke="#4d6072"/><text x="1247" y="341" fill="#dce5ed" font-size="12">Новые сначала ˅</text>
+    <text x="1038" y="410" fill="#8fa1b5" font-size="13">Поиск по названию, ID и этапам</text>
+    <rect x="1038" y="432" width="382" height="74" rx="5" fill="#252c34" stroke="#394552"/><text x="1054" y="462" fill="#f4f7fb" font-size="15">Архитектура графа и командная модель</text><text x="1054" y="485" fill="#8fa1b5" font-size="12">● В работе   Critical   2 / 8 этапов</text>
+    <rect x="1038" y="520" width="382" height="74" rx="5" fill="#252c34" stroke="#394552"/><text x="1054" y="550" fill="#f4f7fb" font-size="15">Исправить сохранение прокрутки</text><text x="1054" y="573" fill="#8fa1b5" font-size="12">✓ Завершено   Bug   Minor</text>
+  </g>
+</svg>

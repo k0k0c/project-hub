@@ -1,0 +1,12 @@
+__pycache__/
+*.py[cod]
+.local/
+.tmp/
+.tmp-*/
+.test-tmp/
+/tmp*/
+data/
+backups/
+*.sqlite*
+target/
+.gitmessage

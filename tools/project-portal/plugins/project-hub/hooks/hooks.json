@@ -1,0 +1,72 @@
+{
+  "description": "Non-blocking lifecycle observations and task-bookkeeping reminders. Hub never grants or denies file access and never requires reservations for edits.",
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python -c \"import os,runpy,sys;p=os.path.join(os.environ['PLUGIN_ROOT'],'scripts');sys.path.insert(0,p);runpy.run_path(os.path.join(p,'client_entry.py'),run_name='__main__')\" hook",
+            "timeout": 10
+          }
+        ]
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python -c \"import os,runpy,sys;p=os.path.join(os.environ['PLUGIN_ROOT'],'scripts');sys.path.insert(0,p);runpy.run_path(os.path.join(p,'client_entry.py'),run_name='__main__')\" hook",
+            "timeout": 10
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "apply_patch|Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python -c \"import os,runpy,sys;p=os.path.join(os.environ['PLUGIN_ROOT'],'scripts');sys.path.insert(0,p);runpy.run_path(os.path.join(p,'client_entry.py'),run_name='__main__')\" hook",
+            "timeout": 3
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python -c \"import os,runpy,sys;p=os.path.join(os.environ['PLUGIN_ROOT'],'scripts');sys.path.insert(0,p);runpy.run_path(os.path.join(p,'client_entry.py'),run_name='__main__')\" hook",
+            "timeout": 10
+          }
+        ]
+      }
+    ],
+    "Interrupt": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python -c \"import os,runpy,sys;p=os.path.join(os.environ['PLUGIN_ROOT'],'scripts');sys.path.insert(0,p);runpy.run_path(os.path.join(p,'client_entry.py'),run_name='__main__')\" hook",
+            "timeout": 3
+          }
+        ]
+      }
+    ],
+    "SessionEnd": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python -c \"import os,runpy,sys;p=os.path.join(os.environ['PLUGIN_ROOT'],'scripts');sys.path.insert(0,p);runpy.run_path(os.path.join(p,'client_entry.py'),run_name='__main__')\" hook",
+            "timeout": 3
+          }
+        ]
+      }
+    ]
+  }
+}

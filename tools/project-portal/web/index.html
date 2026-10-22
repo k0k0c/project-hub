@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="dark" />
+    <title>Project Hub</title>
+    <link rel="icon" href="/favicon.svg" />
+    <link rel="stylesheet" href="/style.css" />
+    <script src="/vendor/lucide.js" defer></script>
+    <script src="/locale-catalog.js" defer></script>
+    <script src="/i18n.js" defer></script>
+    <script src="/live-ui.js" defer></script>
+    <script src="/images.js" defer></script>
+    <link rel="stylesheet" href="/images.css" />
+    <script src="/chat-actions.js" defer></script>
+    <link rel="stylesheet" href="/chat-actions.css" />
+    <script src="/task-launches.js" defer></script>
+    <link rel="stylesheet" href="/task-launches.css" />
+    <script src="/asset-loader.js" defer></script>
+    <script src="/app.js" defer></script>
+    <script src="/knowledge.js" defer></script>
+    <script src="/subsystems.js" defer></script>
+    <script src="/knowledge-research.js" defer></script>
+    <script src="/knowledge-workspace.js" defer></script>
+    <link rel="stylesheet" href="/knowledge.css" />
+    <link rel="stylesheet" href="/knowledge-research.css" />
+    <script src="/documentation.js" defer></script>
+    <link rel="stylesheet" href="/documentation.css" />
+    <script src="/html-documents.js?v=2" defer></script>
+    <link rel="stylesheet" href="/html-documents.css?v=2" />
+    <script src="/checks.js" defer></script>
+    <link rel="stylesheet" href="/checks.css" />
+    <script src="/ui-state.js" defer></script>
+    <script src="/agent-providers.js" defer></script>
+    <script src="/local-files.js" defer></script>
+    <script src="/settings.js" defer></script>
+    <link rel="stylesheet" href="/settings.css" />
+    <script src="/runtime-status.js" defer></script>
+    <link rel="stylesheet" href="/runtime-status.css" />
+    <link rel="stylesheet" href="/agent-providers.css" />
+    <script src="/backups.js" defer></script>
+    <link rel="stylesheet" href="/backups.css" />
+    <script src="/projects.js" defer></script>
+    <script src="/native-chats.js" defer></script>
+    <script src="/connection-projects.js" defer></script>
+    <script src="/connections.js" defer></script>
+    <link rel="stylesheet" href="/connections.css" />
+    <script src="/storage.js" defer></script>
+    <script src="/workspaces.js" defer></script>
+    <link rel="stylesheet" href="/projects.css" />
+    <script src="/backup-status.js" defer></script>
+    <script src="/task-editor.js" defer></script>
+    <link rel="stylesheet" href="/task-editor.css" />
+    <script src="/task-table.js" defer></script>
+    <link rel="stylesheet" href="/task-table.css" />
+    <link rel="stylesheet" href="/viewer.css" />
+    <script src="/vendor/marked.js" defer></script>
+    <script src="/vendor/purify.js" defer></script>
+    <script src="/vendor/highlight.js" defer></script>
+    <script src="/viewer.js" defer></script>
+  </head>
+  <body>
+    <a class="skip" href="#content" data-i18n="shell.skip">Перейти к содержимому</a>
+    <aside class="sidebar">
+      <details id="project-picker">
+      <summary class="brand" aria-label="Выбрать проект" data-i18n-label="shell.chooseProject"
+        ><svg viewBox="0 0 32 32" aria-hidden="true">
+          <path d="M3 21h5V11h6v15h5V6h5v15h5" /></svg
+        ><span><span id="project-name">Project Hub</span><small>PROJECT HUB<i class="project-chevron" aria-hidden="true"></i></small></span></summary
+      >
+      <div class="project-menu">
+        <div id="project-options" aria-label="Проекты" data-i18n-label="shell.projects"></div>
+        <small id="project-discovery" role="status"></small>
+      </div>
+      </details>
+      <div class="nav-label" data-i18n="shell.workspace">РАБОЧЕЕ ПРОСТРАНСТВО</div>
+      <nav id="navigation" aria-label="Разделы проекта" data-i18n-label="shell.sections"></nav>
+      <div class="sidebar-bottom">
+        <span class="local-mark"></span> <span data-i18n="shell.local">Локальный портал</span><small
+          data-i18n="shell.history">История остаётся с проектом</small
+        >
+      </div>
+    </aside>
+    <div class="workspace">
+      <header class="topbar">
+        <div id="breadcrumb" data-i18n-initial="shell.breadcrumb">Проект / Обзор</div>
+        <span id="hub-server-indicator" class="hub-server-indicator" role="status"></span>
+        <div class="live-indicator" id="connection" role="status">
+          <i></i><span data-i18n-initial="shell.connecting">Подключение…</span>
+        </div>
+      </header>
+      <div id="backup-status" class="backup-status-banner" role="region" aria-label="Операции" hidden></div>
+      <div id="alert" role="alert" hidden></div>
+      <main id="content" tabindex="-1">
+        <div class="loading" data-i18n="shell.loading">Загрузка проекта…</div>
+      </main>
+      <footer>
+        <span data-i18n="shell.footer">Project Hub · Единый центр проекта</span
+        ><span id="freshness" data-i18n-initial="shell.waiting">Ожидание данных</span>
+      </footer>
+    </div>
+    <div
+      id="announcement"
+      class="sr-only"
+      aria-live="polite"
+      aria-atomic="true"
+    ></div>
+  </body>
+</html>

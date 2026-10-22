@@ -1,0 +1,31 @@
+.image-gallery { display:grid; grid-template-columns:repeat(auto-fill,minmax(min(150px,100%),1fr)); gap:10px; margin:10px 0; }
+.image-tile { display:flex; flex-direction:column; align-items:stretch; justify-content:flex-start; min-width:0; height:164px; min-height:164px; padding:6px; gap:6px; border:1px solid var(--line,#343a43); border-radius:6px; background:var(--panel,#20242a); color:inherit; text-align:left; white-space:normal; cursor:pointer; overflow:hidden; }
+.image-tile img,.image-failure { width:100%; height:112px; object-fit:contain; background:var(--bg,#171a1e); }
+.image-tile span { overflow-wrap:anywhere; font-size:12px; line-height:1.35; }
+.image-tile .image-failure { display:flex; align-items:center; justify-content:center; text-align:center; color:var(--muted,#99a3b1); }
+.image-tile [hidden] { display:none; }
+.image-dialog { box-sizing:border-box; width:calc(100vw - 32px); max-width:1400px; max-height:calc(100dvh - 32px); padding:16px; border:1px solid var(--line,#343a43); border-radius:8px; background:var(--panel,#20242a); color:var(--text,#e1e6ed); }
+.image-dialog::backdrop { background:#0009; }
+.image-dialog header { display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+.image-dialog header strong { flex:1 1 180px; min-width:0; overflow-wrap:anywhere; font-size:14px; }
+.image-dialog header select { max-width:100%; }
+.image-dialog select { color:inherit; background:var(--bg,#171a1e); border:1px solid var(--line,#343a43); }
+.image-viewer { display:grid; grid-template-columns:44px minmax(0,1fr) 44px; align-items:center; gap:8px; }
+.image-dialog .image-nav { width:40px; min-width:40px; height:64px; justify-self:center; }
+.image-dialog .image-nav:disabled { opacity:.3; cursor:default; }
+.image-dialog .image-viewport { height:60dvh; overflow:auto; background:var(--bg,#171a1e); }
+.image-viewport img { display:block; width:100%; height:100%; object-fit:contain; }
+.image-viewport.original-size img { width:auto; height:auto; max-width:none; max-height:none; }
+.image-dialog pre { white-space:pre-wrap; overflow-wrap:anywhere; max-height:15dvh; overflow:auto; }
+.image-status { min-height:1.5em; overflow-wrap:anywhere; }
+.image-upload-panel { margin-top:12px; }
+.image-upload-panel input { max-width:100%; }
+.image-upload-item { display:flex; align-items:center; gap:8px; padding:6px 0; flex-wrap:wrap; }
+.image-upload-item img { width:64px; height:64px; object-fit:contain; }
+.image-upload-item span { flex:1 1 120px; overflow-wrap:anywhere; }
+.image-upload-item small { flex:1 1 160px; overflow-wrap:anywhere; }
+.editor-image-preview { grid-column:1 / -1; width:112px; }
+@media (max-width:600px) {
+  .image-viewer { grid-template-columns:32px minmax(0,1fr) 32px; gap:4px; }
+  .image-dialog .image-nav { width:32px; min-width:32px; height:56px; }
+}

@@ -1,0 +1,19 @@
+.agent-activity.waiting { color:var(--warning,#e7b969); }
+.agent-activity,.task-estimate { cursor:default; }
+.project-activity { display:inline-flex; align-items:center; padding:5px 9px; border-radius:7px; font-size:12px; }
+.receipt-history ul { padding-left:20px; }
+.receipt-history li { margin:8px 0; }
+.receipt-history button { font:inherit; }
+.research-dialog { width:min(680px,calc(100vw - 28px)); max-height:calc(100dvh - 28px); padding:0; border:1px solid var(--border,#384457); border-radius:14px; background:var(--panel,#162031); color:var(--text,#e5ebf5); }
+.research-dialog::backdrop { background:#0009; }
+.research-dialog[open] { display:flex; flex-direction:column; }
+.research-dialog header,.research-dialog footer { display:flex; align-items:center; justify-content:space-between; gap:12px; padding:16px 20px; flex:none; }
+.research-dialog h2 { margin:0; }
+.research-dialog header { border-bottom:1px solid var(--border,#384457); }
+.research-dialog footer { border-top:1px solid var(--border,#384457); }
+.research-dialog-body { overflow:auto; min-height:0; padding:4px 20px 20px; }
+.research-dialog label { display:flex; flex-direction:column; gap:6px; margin:12px 0; }
+.research-dialog input,.research-dialog select,.research-dialog textarea,.research-dialog button { font:inherit; color:inherit; padding:8px; border:1px solid var(--border,#384457); border-radius:7px; background:var(--surface,#202c40); }
+.research-dialog textarea { resize:vertical; }
+.research-dialog button { cursor:pointer; }
+.research-dialog button:disabled { cursor:default; opacity:.5; }

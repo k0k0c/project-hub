@@ -1,0 +1,3 @@
+# Optional server preview decoders. Original files are never re-encoded.
+Pillow==12.3.0
+pillow-heif==1.7.0

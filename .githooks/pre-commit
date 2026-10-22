@@ -1,0 +1,8 @@
+#!/bin/sh
+set -eu
+
+python scripts/git_safety_check.py commit
+
+# The runner needs the real (possibly alternate) index for its staged snapshot.
+# It clears Git context only in the isolated test subprocesses.
+python scripts/project_hub_check_publish.py --profile auto --staged

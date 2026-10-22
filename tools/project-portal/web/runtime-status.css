@@ -1,0 +1,11 @@
+.hub-runtime-card .hub-runtime-status{margin:12px 0;color:var(--hub-muted);font-size:12px}
+.hub-runtime-details{margin:0 0 14px;border-top:1px solid var(--hub-line)}
+.hub-runtime-row{display:grid;grid-template-columns:minmax(130px, .7fr) minmax(0, 1.3fr);gap:16px;padding:8px 0;border-bottom:1px solid var(--hub-line);font-size:12px}
+.hub-runtime-row dt{color:var(--hub-muted)}
+.hub-runtime-row dd{margin:0;overflow-wrap:anywhere}
+.hub-runtime-tray{margin-top:10px}
+.hub-runtime-tray small{display:block;color:var(--hub-muted);font-size:12px;font-weight:400;margin-top:4px}
+
+.hub-runtime-diagnostics { margin-top: 20px; border-top: 1px solid var(--line); padding-top: 16px; }
+.hub-runtime-diagnostics code { overflow-wrap: anywhere; }
+.hub-runtime-log { max-height: 320px; overflow: auto; white-space: pre-wrap; overflow-wrap: anywhere; font-size: 12px; }

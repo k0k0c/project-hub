@@ -1,0 +1,1134 @@
+{
+  "version": 2,
+  "timeoutSeconds": 1800,
+  "javascriptProfiles": [
+    "css", "javascript", "documentation-ui", "html-documents", "artifacts", "distribution",
+    "storage-acceptance", "settings-ui", "outbound-api", "test-files", "full", "chatgpt-auth"
+  ],
+  "sourceTests": {
+    "scripts/codex_desktop_bridge.mjs": ["scripts/tests/test_codex_desktop_bridge.py"],
+    "scripts/codex_desktop_setup.py": ["scripts/tests/test_codex_desktop_bridge.py"],
+    "scripts/tests/fixtures/codex_desktop_bridge.test.mjs": ["scripts/tests/test_codex_desktop_bridge.py"],
+    "scripts/agent-workflow.md": ["scripts/tests/test_mcp_project_lifecycle.py"],
+    "scripts/native_instruction_store.py": ["scripts/tests/test_mcp_project_lifecycle.py", "scripts/tests/test_native_onboarding.py"],
+    "scripts/native_project_rule.py": ["scripts/tests/test_mcp_project_lifecycle.py"],
+    "scripts/project_bindings.py": ["scripts/tests/test_mcp_project_lifecycle.py", "scripts/tests/test_agent_gateway.py"],
+    "scripts/agent_launches.py": ["scripts/tests/test_mcp_project_lifecycle.py", "scripts/tests/test_connection_onboarding.py", "scripts/tests/test_agent_launches.py"],
+    "tools/project-portal/web/task-launches.js": ["scripts/tests/test_task_launches_ui.py"],
+    "tools/project-portal/web/task-launches.css": ["scripts/tests/test_task_launches_ui.py"],
+    "tools/project-portal/web/connection-projects.js": ["scripts/tests/test_mcp_project_lifecycle.py", "scripts/tests/test_connections_ui.py"],
+    "scripts/storage_merge.py": ["scripts/tests/test_storage_merge.py", "scripts/tests/test_storage_application.py"],
+    "scripts/storage_application.py": ["scripts/tests/test_storage_application.py", "scripts/tests/test_hub_lifecycle.py", "scripts/tests/test_storage_runtime.py"],
+    "scripts/storage_operations.py": ["scripts/tests/test_storage_application.py", "scripts/tests/test_backup_read_session.py", "scripts/tests/test_backup_jobs.py"],
+    "scripts/local_files.py": ["scripts/tests/test_local_files.py", "scripts/tests/test_storage_ui.py"],
+    "scripts/hub_import.py": ["scripts/tests/test_hub_import.py", "scripts/tests/test_storage_application.py"],
+    "scripts/backup_api.py": ["scripts/tests/test_backup_http.py", "scripts/tests/test_backup_jobs.py", "scripts/tests/test_storage_application.py"],
+    "tools/project-portal/web/storage.js": ["scripts/tests/test_storage_ui.py", "scripts/tests/test_backup_refresh_ui.py"],
+    "tools/project-portal/web/local-files.js": ["scripts/tests/test_storage_ui.py", "scripts/tests/test_settings_ui.py"],
+    "tools/project-portal/web/backup-status.js": ["scripts/tests/test_backup_status_ui.py", "scripts/tests/test_backup_refresh_ui.py"],
+    "scripts/storage_preparation.py": ["scripts/tests/test_storage_preparation.py", "scripts/tests/test_connection_onboarding.py", "scripts/tests/test_runtime_storage.py"],
+    "scripts/task_chats.py": ["scripts/tests/test_task_chats.py", "scripts/tests/test_chats_ui.py"],
+    "scripts/unified_actions.py": ["scripts/tests/test_unified_actions.py", "scripts/tests/test_hub_project_review.py", "scripts/tests/test_hub_chat_actions_http.py"],
+    "scripts/hub_action_context.py": ["scripts/tests/test_hub_chat_actions.py", "scripts/tests/test_hub_project_review.py", "scripts/tests/test_api_agent_runs.py"],
+    "scripts/project_workspaces.py": ["scripts/tests/test_project_workspaces.py", "scripts/tests/test_workspaces_ui.py"],
+    "scripts/ui_preferences.py": ["scripts/tests/test_ui_preferences.py", "scripts/tests/test_ui_state.py"],
+    "tools/project-portal/web/agent-providers.js": ["scripts/tests/test_agent_providers_ui.py", "scripts/tests/test_agent_instructions_ui.py"],
+    "tools/project-portal/web/agent-providers.css": ["scripts/tests/test_agent_providers_ui.py", "scripts/tests/test_agent_instructions_ui.py"],
+    "tools/project-portal/web/connections.js": ["scripts/tests/test_connections_ui.py", "scripts/tests/test_connection_onboarding.py", "scripts/tests/test_workspaces_ui.py"],
+    "tools/project-portal/web/connections.css": ["scripts/tests/test_connections_ui.py", "scripts/tests/test_workspaces_ui.py"],
+    "tools/project-portal/web/projects.js": ["scripts/tests/test_projects_ui.py", "scripts/tests/test_project_resolution_views.py"],
+    "tools/project-portal/web/workspaces.js": ["scripts/tests/test_workspaces_ui.py"],
+    "tools/project-portal/web/chat-actions.js": ["scripts/tests/test_hub_chat_actions_ui.py"],
+    "tools/project-portal/web/chat-actions.css": ["scripts/tests/test_hub_chat_actions_ui.py"],
+    "tools/project-portal/web/runtime-status.js": ["scripts/tests/test_runtime_ui.py"],
+    "tools/project-portal/web/runtime-status.css": ["scripts/tests/test_runtime_ui.py"],
+    "tools/project-portal/web/native-chats.js": ["scripts/tests/test_chats_ui.py", "scripts/tests/test_hub_chat_actions_ui.py"],
+    "tools/project-portal/web/knowledge-research.js": ["scripts/tests/test_research_ui.py", "scripts/tests/test_agent_instructions_ui.py"],
+    "tools/project-portal/web/knowledge.js": ["scripts/tests/test_knowledge_ui.py", "scripts/tests/test_architecture_navigation_ui.py", "scripts/tests/test_documentation_ui.py"],
+    "tools/project-portal/web/knowledge.css": ["scripts/tests/test_knowledge_ui.py", "scripts/tests/test_compact_controls.py"],
+    "tools/project-portal/web/documentation.js": ["scripts/tests/test_documentation_ui.py", "scripts/tests/test_html_documents_ui.py", "scripts/tests/test_knowledge_ui.py"],
+    "tools/project-portal/web/documentation.css": ["scripts/tests/test_documentation_ui.py", "scripts/tests/test_html_documents_ui.py", "scripts/tests/test_compact_controls.py"],
+    "scripts/chatgpt_auth.py": ["scripts/tests/test_chatgpt_auth.py", "scripts/tests/test_chatgpt_crypto.py", "scripts/tests/test_provider_runtime.py", "scripts/tests/test_agent_providers.py", "scripts/tests/test_agent_providers_ui.py", "scripts/tests/test_agent_http.py", "scripts/tests/test_api_agent_runs.py", "scripts/tests/test_portal_asgi.py", "scripts/tests/test_secret_vault.py"]
+  },
+  "executionEnvironment": {
+    "version": 1,
+    "mode": "native"
+  },
+  "validationInputs": {
+    "version": 1,
+    "artifacts": [],
+    "files": [],
+    "builds": [],
+    "profileDependencies": {}
+  },
+  "profiles": {
+    "storage-runtime": [
+      "test_storage_runtime.py"
+    ],
+    "storage-import": [
+      "test_storage_merge.py",
+      "test_storage_application.py",
+      "test_storage_runtime.py",
+      "test_local_files.py",
+      "test_storage_ui.py",
+      "test_backups_ui.py",
+      "test_hub_import.py",
+      "test_hub_lifecycle.py",
+      "test_backup_jobs.py",
+      "test_backup_http.py",
+      "test_backup_read_session.py",
+      "test_backup_ui.py",
+      "test_backup_status_ui.py",
+      "test_backup_refresh_ui.py",
+      "test_settings_ui.py",
+      "test_projects_ui.py",
+      "test_workspaces_ui.py",
+      "test_agent_gateway.py",
+      "test_mcp_transport.py",
+      "test_portal_asgi.py"
+    ],
+    "storage-acceptance": [
+      "test_storage_merge.py",
+      "test_storage_application.py",
+      "test_storage_runtime.py",
+      "test_local_files.py",
+      "test_storage_ui.py",
+      "test_backups_ui.py",
+      "test_hub_import.py",
+      "test_hub_lifecycle.py",
+      "test_backup_jobs.py",
+      "test_backup_http.py",
+      "test_backup_read_session.py",
+      "test_backup_ui.py",
+      "test_backup_status_ui.py",
+      "test_backup_refresh_ui.py",
+      "test_settings_ui.py",
+      "test_projects_ui.py",
+      "test_workspaces_ui.py",
+      "test_agent_gateway.py",
+      "test_mcp_transport.py",
+      "test_portal_asgi.py",
+      "test_activation_startup.py",
+      "test_agent_http.py",
+      "test_agent_sdk.py",
+      "test_background_processes.py",
+      "test_hub_desktop.py",
+      "test_hub_instance.py",
+      "test_hub_launcher.py",
+      "test_hub_source.py",
+      "test_hub_tray.py",
+      "test_hub_update.py",
+      "test_project_hub_distribution.py",
+      "test_runtime_storage.py",
+      "test_runtime_ui.py",
+      "test_storage_preparation.py",
+      "test_windows_installer.py"
+    ],
+    "plugin-api-feedback": [
+      "test_project_hub_plugin_api.py",
+      "test_agent_gateway.py",
+      "test_mcp_transport.py"
+    ],
+    "installer-lifecycle": [
+      "test_hub_update.py",
+      "test_hub_launcher.py",
+      "test_hub_lifecycle.py",
+      "test_windows_installer.py",
+      "test_project_hub_distribution.py"
+    ],
+    "project-admin-ui": [
+      "test_projects_ui.py",
+      "test_i18n_ui.py",
+      "test_connections_ui.py",
+      "test_workspaces_ui.py",
+      "test_backup_ui.py",
+      "test_backup_status_ui.py",
+      "test_backup_refresh_ui.py"
+    ],
+    "standalone-integration-recovery": [
+      "test_architecture_agent.py",
+      "test_knowledge_research.py",
+      "test_knowledge_report_evidence.py",
+      "test_knowledge_http.py",
+      "test_project_hub_transfer.py",
+      "test_project_hub_distribution.py",
+      "test_i18n_ui.py",
+      "test_hub_instructions_ui.py",
+      "test_live_interactions_ui.py"
+    ],
+    "standalone-launcher": [
+      "test_hub_launcher.py",
+      "test_windows_installer.py",
+      "test_ui_preferences.py",
+      "test_project_hub_distribution.py",
+      "test_backup_jobs.py"
+    ],
+    "standalone-interface": [
+      "test_ui_preferences.py",
+      "test_connections_ui.py",
+      "test_i18n_ui.py",
+      "test_task_detail_ui.py",
+      "test_live_interactions_ui.py",
+      "test_settings_ui.py",
+      "test_knowledge_ui.py",
+      "test_documentation_ui.py",
+      "test_projects_ui.py",
+      "test_backup_refresh_ui.py"
+    ],
+    "integration-error-reproducer": [
+      "test_backup_jobs.py",
+      "test_codex_adapter.py",
+      "test_live_interactions_ui.py",
+      "test_portal_performance.py"
+    ],
+    "agent-http-reproducer": [
+      "test_agent_http.py"
+    ],
+    "stable-interface-updates": [
+      "test_task_editor.py",
+      "test_task_detail_ui.py",
+      "test_live_ui.py",
+      "test_backup_refresh_ui.py",
+      "test_live_interactions_ui.py",
+      "test_ui_state.py",
+      "test_backup_ui.py",
+      "test_settings_ui.py",
+      "test_knowledge_ui.py",
+      "test_hub_chat_actions_ui.py",
+      "test_documentation_ui.py",
+      "test_projects_ui.py"
+    ],
+    "agent-gateway": [
+      "test_agent_gateway.py",
+      "test_mcp_transport.py",
+      "test_agent_http.py",
+      "test_agent_sdk.py"
+    ],
+    "standalone-compatibility-reproducer": [
+      "test_subagent_integration.py",
+      "test_codex_adapter.py",
+      "test_project_hub_multi_http.py",
+      "test_settings_http.py",
+      "test_standalone_projects.py"
+    ],
+    "standalone-review-feedback": [
+      "test_storage_upgrade.py",
+      "test_standalone_projects.py",
+      "test_rootless_http.py",
+      "test_projects_ui.py",
+      "test_backup_ui.py"
+    ],
+    "standalone-fixtures": [
+      "test_standalone_projects.py",
+      "test_projects_ui.py"
+    ],
+    "standalone-reproducer": [
+      "test_standalone_projects.py",
+      "test_projects_ui.py",
+      "test_portal_asgi.py"
+    ],
+    "standalone-projects": [
+      "test_standalone_projects.py",
+      "test_storage_upgrade.py",
+      "test_rootless_http.py",
+      "test_projects_ui.py",
+      "test_project_hub_registry.py",
+      "test_manual_editing.py",
+      "test_portal_asgi.py",
+      "test_project_hub_distribution.py"
+    ],
+    "backup-settings-reproducer": [
+      "test_settings_completion.py"
+    ],
+    "backup-reads-reproducer": [
+      "test_backup_read_session.py"
+    ],
+    "backup-reads": [
+      "test_backup_read_session.py",
+      "test_backup_jobs.py",
+      "test_backup_http.py",
+      "test_backup_ui.py",
+      "test_backup_status_ui.py",
+      "test_hub_backup.py",
+      "test_shared_observations.py",
+      "test_project_hub_distribution.py"
+    ],
+    "backups": [
+      "test_hub_backup.py",
+      "test_backup_http.py",
+      "test_backup_ui.py",
+      "test_project_hub_backup.py",
+      "test_project_hub_distribution.py",
+      "test_project_hub_registry.py",
+      "test_hub_instructions.py"
+    ],
+    "backup-feedback": [
+      "test_hub_backup.py",
+      "test_backup_http.py",
+      "test_project_hub_distribution.py"
+    ],
+    "backup-core": [
+      "test_hub_backup.py"
+    ],
+    "observation-recovery": [
+      "test_shared_observations.py",
+      "test_portal_performance.py",
+      "test_portal_asgi.py",
+      "test_live_interactions_ui.py"
+    ],
+    "runtime-storage": [
+      "test_runtime_storage.py",
+      "test_source_snapshots.py",
+      "test_check_wrapper.py",
+      "test_checks_end_to_end.py",
+      "test_check_publish.py",
+      "test_project_hub_storage_paths.py",
+      "test_project_hub_distribution.py"
+    ],
+    "storage-compatibility": [
+      "test_diagnostics.py",
+      "test_subagent_portal.py",
+      "test_hub_notices.py",
+      "test_project_hub_memory.py",
+      "test_project_hub_plugin.py",
+      "test_project_hub_package.py",
+      "test_portal_performance.py",
+      "test_live_interactions_ui.py"
+    ],
+    "write-acknowledgments": [
+      "test_write_acknowledgments.py",
+      "test_check_wrapper.py"
+    ],
+    "architecture-workspace": [
+      "test_ui_state.py",
+      "test_architecture_navigation_ui.py",
+      "test_knowledge_research.py",
+      "test_knowledge_lsp.py",
+      "test_architecture_agent.py",
+      "test_research_ui.py",
+      "test_knowledge_store.py",
+      "test_knowledge_http.py",
+      "test_knowledge_ui.py",
+      "test_hub_chat_actions.py",
+      "test_hub_chat_actions_http.py",
+      "test_codex_adapter.py",
+      "test_hub_chat_actions_ui.py",
+      "test_project_settings.py",
+      "test_settings_ui.py",
+      "test_hub_project_review.py",
+      "test_knowledge_workspace.py"
+    ],
+    "research": [
+      "test_knowledge_research.py",
+      "test_knowledge_lsp.py",
+      "test_architecture_agent.py",
+      "test_research_ui.py",
+      "test_knowledge_store.py",
+      "test_knowledge_http.py",
+      "test_knowledge_ui.py",
+      "test_hub_chat_actions.py",
+      "test_hub_chat_actions_http.py"
+    ],
+    "css": [
+      "test_compact_controls.py",
+      "test_task_table.py",
+      "test_viewer_compact.py",
+      "test_*ui.py",
+      "test_task_editor.py",
+      "test_ui_state.py"
+    ],
+    "javascript": [
+      "test_compact_controls.py",
+      "test_task_table.py",
+      "test_viewer_compact.py",
+      "test_*ui.py",
+      "test_task_editor.py",
+      "test_ui_state.py"
+    ],
+    "portal": [
+      "test_project_portal*.py",
+      "test_*http.py",
+      "test_document_sources.py",
+      "test_manual_editing.py",
+      "test_diagnostics.py",
+      "test_subagent_portal.py",
+      "test_project_resolution_views.py"
+    ],
+    "core": [
+      "test_task_*.py",
+      "test_stage_*.py",
+      "test_project_hub_transfer.py",
+      "test_project_hub_storage_paths.py",
+      "test_project_hub_registry.py",
+      "test_project_hub_bindings.py",
+      "test_project_hub_memory.py",
+      "test_project_hub_backup.py",
+      "test_project_settings.py",
+      "test_settings_completion.py",
+      "test_git_integration.py",
+      "test_session_reconciliation.py",
+      "test_subagent_*.py",
+      "test_checks_http.py",
+      "test_check_plugin_contract.py"
+    ],
+    "package": [
+      "test_project_hub_plugin*.py",
+      "test_project_hub_package.py",
+      "test_project_hub_distribution.py",
+      "test_settings_plugin_contract.py",
+      "test_lifecycle_diagnostics.py",
+      "test_git_safety_check.py",
+      "test_check_wrapper.py",
+      "test_check_publish.py",
+      "test_checks_end_to_end.py",
+      "test_check_plugin_contract.py"
+    ],
+    "docs": [],
+    "documentation-ui": [
+      "test_documentation_ui.py",
+      "test_html_documents_ui.py",
+      "test_knowledge_ui.py",
+      "test_knowledge_http.py",
+      "test_compact_controls.py",
+      "test_ui_state.py"
+    ],
+    "html-documents": [
+      "test_knowledge_html.py",
+      "test_knowledge_store.py",
+      "test_knowledge_http.py",
+      "test_document_sources.py",
+      "test_image_sources.py",
+      "test_documentation_ui.py",
+      "test_html_documents_ui.py",
+      "test_knowledge_ui.py"
+    ],
+    "artifacts": [
+      "test_artifact_store.py",
+      "test_image_http.py",
+      "test_image_sources.py",
+      "test_image_ui.py",
+      "test_document_sources.py",
+      "test_knowledge_store.py"
+    ],
+    "changesets": [
+      "test_git_changesets.py",
+      "test_git_batches.py",
+      "test_git_integration.py",
+      "test_checkpoint_reconciliation.py",
+      "test_checkpoint_batches.py",
+      "test_checkpoint_batch_ui.py",
+      "test_settings_ui.py",
+      "test_task_table.py",
+      "test_project_hub_transfer.py"
+    ],
+    "plugin-docs": [
+      "test_settings_plugin_contract.py",
+      "test_project_hub_distribution.py"
+    ],
+    "runner": [
+      "tests/test_project_test_runner.py",
+      "tests/test_project_hub_unittest.py",
+      "scripts/tests/test_check_publish.py",
+      "scripts/tests/test_discovery_duplicates.py"
+    ],
+    "hub-instructions": [
+      "test_hub_instructions.py",
+      "test_hub_instructions_http.py",
+      "test_hub_instructions_ui.py",
+      "test_settings_ui.py",
+      "test_project_hub_distribution.py",
+      "test_project_hub_package.py"
+    ],
+    "codex-adapter": [
+      "test_codex_adapter.py",
+      "test_hub_chat_actions.py",
+      "test_hub_chat_actions_ui.py",
+      "test_hub_chat_actions_http.py"
+    ],
+    "hub-coordination": [
+      "test_hub_notices.py",
+      "test_hub_watch.py",
+      "test_hub_notice_http.py",
+      "test_project_hub_plugin.py",
+      "test_project_hub_plugin_api.py",
+      "test_lifecycle_diagnostics.py",
+      "test_subagent_coordination.py"
+    ],
+    "full": [
+      "test_*.py"
+    ],
+    "standalone-storage": [
+      "test_hub_launcher.py",
+      "test_hub_lifecycle.py",
+      "test_hub_import.py",
+      "test_backup_jobs.py",
+      "test_storage_upgrade.py",
+      "test_standalone_projects.py"
+    ],
+    "native-onboarding": [
+      "test_native_onboarding.py",
+      "test_agent_sdk.py",
+      "test_agent_gateway.py",
+      "test_subsystem_actions.py"
+    ],
+    "standalone-agents": [
+      "test_project_workspaces.py",
+      "test_workspaces_ui.py",
+      "test_provider_runtime.py",
+      "test_secret_vault.py",
+      "test_agent_providers.py",
+      "test_agent_providers_ui.py",
+      "test_api_agent_runs.py",
+      "test_subsystem_actions.py",
+      "test_agent_gateway.py",
+      "test_hub_chat_actions.py",
+      "test_hub_chat_actions_http.py",
+      "test_hub_project_review.py"
+    ],
+    "standalone-agents-fix": [
+      "test_hub_chat_actions.py",
+      "test_project_workspaces.py",
+      "test_provider_runtime.py"
+    ],
+    "standalone-agents-ui": [
+      "test_workspaces_ui.py",
+      "test_agent_providers_ui.py",
+      "test_subsystem_actions.py",
+      "test_hub_chat_actions_ui.py",
+      "test_settings_ui.py",
+      "test_i18n_ui.py",
+      "test_api_agent_runs.py",
+      "test_agent_http.py",
+      "test_rootless_http.py",
+      "test_knowledge_store.py"
+    ],
+    "standalone-architecture-feedback": [
+      "test_i18n_ui.py",
+      "test_subsystem_actions.py",
+      "test_workspaces_ui.py",
+      "test_subsystems_ui.py"
+    ],
+    "standalone-native-repro": [
+      "test_native_mcp_setup.py"
+    ],
+    "knowledge-ui-reproducer": [
+      "test_knowledge_ui.py"
+    ],
+    "activation-safety": [
+      "test_hub_lifecycle.py",
+      "test_activation_startup.py"
+    ],
+    "standalone-native-registration": [
+      "test_native_mcp_setup.py",
+      "test_native_onboarding.py",
+      "test_mcp_stdio_client.py",
+      "test_agent_sdk.py",
+      "test_agent_http.py"
+    ],
+    "standalone-ui-feedback": [
+      "test_agent_providers_ui.py",
+      "test_runtime_ui.py",
+      "test_settings_ui.py",
+      "test_windows_installer.py",
+      "test_hub_chat_actions_ui.py",
+      "test_i18n_ui.py"
+    ],
+    "standalone-api-controls": [
+      "test_agent_providers.py",
+      "test_agent_providers_ui.py",
+      "test_api_agent_runs.py",
+      "test_hub_desktop.py",
+      "test_runtime_ui.py",
+      "test_settings_ui.py",
+      "test_hub_chat_actions.py",
+      "test_architecture_agent.py",
+      "test_hub_project_review.py",
+      "test_project_hub_distribution.py",
+      "test_windows_installer.py",
+      "test_hub_launcher.py",
+      "test_hub_lifecycle.py"
+    ],
+    "global-agent-connections": [
+      "test_mcp_project_lifecycle.py",
+      "test_connection_onboarding.py",
+      "test_agent_instructions_ui.py",
+      "test_agent_gateway.py",
+      "test_agent_http.py",
+      "test_mcp_transport.py",
+      "test_agent_sdk.py",
+      "test_native_onboarding.py",
+      "test_native_mcp_setup.py",
+      "test_connections_ui.py",
+      "test_agent_providers_ui.py",
+      "test_settings_ui.py",
+      "test_projects_ui.py"
+    ],
+    "mcp-http-instructions": [
+      "test_agent_contracts.py",
+      "test_portal_asgi.py",
+      "test_mcp_transport.py",
+      "test_mcp_project_lifecycle.py",
+      "test_native_mcp_setup.py",
+      "test_native_onboarding.py",
+      "test_agent_sdk.py",
+      "test_agent_gateway.py",
+      "test_agent_http.py",
+      "test_connection_onboarding.py",
+      "test_agent_instructions_ui.py",
+      "test_project_hub_distribution.py"
+    ],
+    "agent-setup-acceptance": [
+      "test_agent_contracts.py",
+      "test_mcp_project_lifecycle.py",
+      "test_connection_onboarding.py",
+      "test_agent_gateway.py",
+      "test_agent_http.py",
+      "test_mcp_transport.py",
+      "test_agent_sdk.py",
+      "test_native_onboarding.py",
+      "test_native_mcp_setup.py",
+      "test_mcp_stdio_client.py",
+      "test_agent_instructions_ui.py",
+      "test_connections_ui.py",
+      "test_project_hub_plugin_api.py",
+      "test_project_hub_plugin.py",
+      "test_hub_notice_http.py",
+      "test_check_plugin_contract.py",
+      "test_checks_http.py",
+      "test_checks_end_to_end.py",
+      "test_checkpoint_reconciliation.py",
+      "test_settings_plugin_contract.py",
+      "test_task_progress_mcp.py",
+      "test_write_acknowledgments.py",
+      "test_hub_project_review.py",
+      "test_knowledge_store.py",
+      "test_knowledge_http.py",
+      "test_knowledge_research.py",
+      "test_artifact_store.py",
+      "test_image_http.py",
+      "test_git_batches.py",
+      "test_portal_asgi.py",
+      "test_research_api.py"
+    ],
+    "connection-onboarding-feedback": [
+      "test_connection_onboarding.py",
+      "test_storage_preparation.py",
+      "test_agent_gateway.py",
+      "test_agent_http.py",
+      "test_mcp_transport.py",
+      "test_native_onboarding.py",
+      "test_connections_ui.py",
+      "test_agent_instructions_ui.py",
+      "test_settings_ui.py",
+      "test_hub_tray.py"
+    ],
+    "connection-integration-feedback": [
+      "test_connection_onboarding.py",
+      "test_storage_preparation.py",
+      "test_agent_gateway.py",
+      "test_agent_http.py",
+      "test_mcp_transport.py",
+      "test_native_onboarding.py",
+      "test_connections_ui.py",
+      "test_agent_instructions_ui.py",
+      "test_hub_instructions_ui.py",
+      "test_settings_ui.py",
+      "test_chats_ui.py",
+      "test_task_chats.py",
+      "test_background_processes.py",
+      "test_hub_launcher.py",
+      "test_hub_lifecycle.py",
+      "test_hub_tray.py",
+      "test_hub_desktop.py",
+      "test_hub_instance.py",
+      "test_research_api.py",
+      "test_api_agent_runs.py",
+      "test_unified_actions.py",
+      "test_project_hub_distribution.py"
+    ],
+    "connection-storage-feedback": [
+      "test_storage_preparation.py",
+      "test_storage_upgrade.py",
+      "test_connection_onboarding.py",
+      "test_agent_http.py",
+      "test_agent_sdk.py",
+      "test_portal_asgi.py"
+    ],
+    "connection-final-feedback": [
+      "test_connection_onboarding.py",
+      "test_chats_ui.py",
+      "test_hub_launcher.py"
+    ],
+    "connection-contract-recovery": [
+      "test_connection_onboarding.py",
+      "test_agent_gateway.py",
+      "test_agent_http.py",
+      "test_mcp_transport.py",
+      "test_mcp_stdio_client.py",
+      "test_api_agent_runs.py",
+      "test_chats_ui.py"
+    ],
+    "portable-runtime": [
+      "test_hub_launcher.py",
+      "test_hub_source.py",
+      "test_hub_lifecycle.py",
+      "test_hub_instance.py",
+      "test_hub_tray.py",
+      "test_hub_desktop.py",
+      "test_runtime_ui.py",
+      "test_runtime_storage.py"
+    ],
+    "research-only-ui": [
+      "test_hub_chat_actions_ui.py",
+      "test_unified_actions.py",
+      "test_knowledge_ui.py",
+      "test_documentation_ui.py",
+      "test_task_detail_ui.py",
+      "test_task_table.py",
+      "test_projects_ui.py",
+      "test_i18n_ui.py",
+      "test_research_ui.py"
+    ],
+    "outbound-api": [
+      "test_provider_runtime.py",
+      "test_agent_providers.py",
+      "test_agent_providers_ui.py",
+      "test_api_agent_runs.py",
+      "test_research_api.py",
+      "test_research_ui.py",
+      "test_agent_http.py",
+      "test_portal_asgi.py",
+      "test_connection_onboarding.py",
+      "test_mcp_project_lifecycle.py",
+      "test_hub_chat_actions_ui.py",
+      "test_project_hub_distribution.py"
+    ],
+    "research-api": [
+      "test_api_agent_runs.py",
+      "test_research_api.py",
+      "test_provider_runtime.py"
+    ],
+    "global-connections-reproducer": [
+      "test_agent_gateway.py",
+      "test_mcp_transport.py"
+    ],
+    "research-api-feedback": [
+      "test_api_agent_runs.py",
+      "test_research_api.py"
+    ],
+    "portable-runtime-feedback": [
+      "test_hub_launcher.py",
+      "test_hub_source.py",
+      "test_hub_tray.py",
+      "test_hub_instance.py",
+      "test_hub_desktop.py"
+    ],
+    "background-console": [
+      "test_background_processes.py",
+      "test_git_integration.py",
+      "test_git_history_performance.py",
+      "test_git_changesets.py",
+      "test_diagnostics.py",
+      "test_shared_observations.py",
+      "test_knowledge_store.py",
+      "test_knowledge_workspace.py",
+      "test_native_mcp_setup.py",
+      "test_hub_launcher.py",
+      "test_hub_tray.py",
+      "test_project_hub_distribution.py"
+    ],
+    "research-http": [
+      "test_hub_chat_actions_http.py"
+    ],
+    "runtime-integration-feedback": [
+      "test_hub_launcher.py",
+      "test_hub_tray.py",
+      "test_hub_update.py",
+      "test_hub_chat_actions_http.py",
+      "test_windows_installer.py",
+      "test_project_hub_distribution.py",
+      "test_architecture_agent.py",
+      "test_hub_project_review.py"
+    ],
+    "research-source": [
+      "test_research_api.py"
+    ],
+    "desktop-lease-feedback": [
+      "test_hub_desktop.py",
+      "test_hub_tray.py",
+      "test_hub_instance.py",
+      "test_hub_launcher.py",
+      "test_hub_update.py",
+      "test_hub_chat_actions_http.py"
+    ],
+    "research-ui-reproducer": [
+      "test_hub_chat_actions_ui.py"
+    ],
+    "launcher-feedback": [
+      "test_hub_launcher.py"
+    ],
+    "instructions-ui-reproducer": [
+      "test_hub_instructions_ui.py",
+      "test_settings_ui.py"
+    ],
+    "activation-startup-feedback": [
+      "test_activation_startup.py"
+    ],
+    "settings-ui": [
+      "test_settings_ui.py",
+      "test_hub_instructions_ui.py",
+      "test_compact_controls.py",
+      "test_ui_state.py",
+      "test_ui_preferences.py"
+    ],
+    "distribution": [
+      "test_activation_startup.py",
+      "test_agent_http.py",
+      "test_agent_sdk.py",
+      "test_background_processes.py",
+      "test_hub_desktop.py",
+      "test_hub_instance.py",
+      "test_hub_launcher.py",
+      "test_hub_lifecycle.py",
+      "test_hub_source.py",
+      "test_hub_tray.py",
+      "test_hub_update.py",
+      "test_mcp_transport.py",
+      "test_portal_asgi.py",
+      "test_project_hub_distribution.py",
+      "test_runtime_storage.py",
+      "test_runtime_ui.py",
+      "test_storage_preparation.py",
+      "test_windows_installer.py"
+    ],
+    "chatgpt-auth": [
+      "test_chatgpt_auth.py",
+      "test_chatgpt_crypto.py",
+      "test_provider_runtime.py",
+      "test_agent_providers.py",
+      "test_agent_providers_ui.py",
+      "test_agent_http.py",
+      "test_api_agent_runs.py",
+      "test_portal_asgi.py",
+      "test_secret_vault.py"
+    ]
+  },
+  "rules": [
+    {
+      "paths": [
+        "docs/*.png",
+        "docs/*.jpg",
+        "docs/*.jpeg",
+        "docs/*.webp",
+        "docs/*.svg"
+      ],
+      "profiles": [
+        "docs"
+      ]
+    },
+    {
+      "paths": [
+        "docs/*.md",
+        "docs/*.txt",
+        "docs/*.html",
+        "docs/*.css",
+        "README*",
+        "LICENSE*",
+        "SOURCE-NOTICES.md",
+        "AGENTS.md",
+        ".agents/skills/*.md"
+      ],
+      "profiles": [
+        "docs"
+      ]
+    },
+    {
+      "paths": [
+        "installer/*",
+        "scripts/hub_update.py"
+      ],
+      "profiles": [
+        "installer-lifecycle"
+      ]
+    },
+    {
+      "paths": [
+        "scripts/build_project_hub_distribution.py",
+        "scripts/build_windows_installer.py",
+        "requirements-server.txt",
+        "requirements-images.txt",
+        "requirements-desktop.txt"
+      ],
+      "profiles": [
+        "distribution"
+      ]
+    },
+    {
+      "paths": [
+        "scripts/hub_launcher.py",
+        "scripts/hub_lifecycle.py",
+        "scripts/hub_instance.py",
+        "scripts/hub_source.py",
+        "scripts/hub_tray.py",
+        "scripts/hub_desktop.py",
+        "scripts/hub_cli.py"
+      ],
+      "profiles": [
+        "portable-runtime"
+      ]
+    },
+    {
+      "paths": [
+        "scripts/agent_api.py",
+        "scripts/agent_bindings.py",
+        "scripts/agent_instructions.py",
+        "scripts/agent_sdk.py",
+        "scripts/agent_runtime.py",
+        "scripts/connection_capabilities.py",
+        "scripts/native_onboarding.py",
+        "scripts/native_mcp_setup.py",
+        "scripts/mcp_transport.py",
+        "scripts/mcp_stdio_client.py",
+        "scripts/native_chats.py",
+        "scripts/storage_preparation.py"
+      ],
+      "profiles": [
+        "global-agent-connections"
+      ]
+    },
+    {
+      "paths": [
+        "scripts/agent_providers.py",
+        "scripts/provider_runtime.py",
+        "scripts/secret_vault.py"
+      ],
+      "profiles": [
+        "standalone-agents"
+      ]
+    },
+    {
+      "paths": [
+        "scripts/api_agent_runs.py",
+        "scripts/research_api.py",
+        "scripts/research_sources.py"
+      ],
+      "profiles": [
+        "research-api"
+      ]
+    },
+    {
+      "paths": [
+        "scripts/hub_chat_actions.py",
+        "scripts/hub_action_context.py",
+        "scripts/legacy_action_receipts.py"
+      ],
+      "profiles": [
+        "codex-adapter"
+      ]
+    },
+    {
+      "paths": [
+        "scripts/portal_asgi.py"
+      ],
+      "profiles": [
+        "portal"
+      ]
+    },
+    {
+      "paths": [
+        "tools/project-portal/web/settings.js",
+        "tools/project-portal/web/settings.css"
+      ],
+      "profiles": [
+        "settings-ui"
+      ]
+    },
+    {
+      "paths": [
+        "tools/project-portal/web/documentation.*",
+        "tools/project-portal/web/html-documents.*",
+        "tools/project-portal/web/knowledge.js",
+        "scripts/tests/test_documentation_ui.py",
+        "scripts/tests/test_html_documents_ui.py",
+        "scripts/tests/test_knowledge_ui.py"
+      ],
+      "profiles": [
+        "documentation-ui"
+      ]
+    },
+    {
+      "paths": [
+        "scripts/knowledge_html.py",
+        "scripts/tests/test_knowledge_html.py"
+      ],
+      "profiles": [
+        "html-documents"
+      ]
+    },
+    {
+      "paths": [
+        "tools/project-portal/web/*.css"
+      ],
+      "exclude": [
+        "tools/project-portal/web/documentation.css",
+        "tools/project-portal/web/html-documents.css",
+        "tools/project-portal/web/settings.css"
+      ],
+      "profiles": [
+        "css"
+      ]
+    },
+    {
+      "paths": [
+        "tools/project-portal/web/index.html"
+      ],
+      "profiles": [
+        "css"
+      ]
+    },
+    {
+      "paths": [
+        "tools/project-portal/web/*.js"
+      ],
+      "exclude": [
+        "tools/project-portal/web/documentation.js",
+        "tools/project-portal/web/html-documents.js",
+        "tools/project-portal/web/knowledge.js",
+        "tools/project-portal/web/settings.js"
+      ],
+      "profiles": [
+        "javascript"
+      ]
+    },
+    {
+      "paths": [
+        "tools/project-portal/web/vendor/*"
+      ],
+      "profiles": [
+        "full"
+      ]
+    },
+    {
+      "paths": [
+        "scripts/project_portal.py",
+        "scripts/plugin_api.py",
+        "scripts/project_registry.py",
+        "scripts/project_resolution.py",
+        "scripts/completion_policy.py",
+        "scripts/codex_session_catalog.py"
+      ],
+      "profiles": [
+        "full"
+      ]
+    },
+    {
+      "paths": [
+        "scripts/task_progress.py",
+        "scripts/stage_operations.py",
+        "scripts/task_transfer.py"
+      ],
+      "profiles": [
+        "core",
+        "portal",
+        "package"
+      ]
+    },
+    {
+      "paths": [
+        "tools/project-portal/plugins/project-hub/*.md"
+      ],
+      "profiles": [
+        "plugin-docs"
+      ]
+    },
+    {
+      "paths": [
+        "tools/project-portal/plugins/project-hub/assets/instructions-catalog.json"
+      ],
+      "profiles": [
+        "hub-instructions"
+      ]
+    },
+    {
+      "paths": [
+        "tools/project-portal/plugins/project-hub/*",
+        "scripts/prepare_project_hub_plugin.py",
+        "scripts/project_hub_client_entry.py"
+      ],
+      "exclude": [
+        "tools/project-portal/plugins/project-hub/*.md",
+        "tools/project-portal/plugins/project-hub/assets/instructions-catalog.json"
+      ],
+      "profiles": [
+        "full"
+      ]
+    },
+    {
+      "paths": [
+        ".project-hub/testing.json",
+        "scripts/project_hub_check.py",
+        "scripts/project_hub_unittest.py",
+        "scripts/check_paths.py",
+        ".githooks/*"
+      ],
+      "profiles": [
+        "runner"
+      ]
+    },
+    {
+      "paths": [
+        "tests/test_project_test_runner.py",
+        "tests/test_project_hub_unittest.py"
+      ],
+      "profiles": [
+        "runner"
+      ]
+    },
+    {
+      "paths": [
+        "scripts/git_safety_check.py"
+      ],
+      "profiles": [
+        "package"
+      ]
+    },
+    {
+      "paths": [
+        "scripts/check_runs.py"
+      ],
+      "profiles": [
+        "core",
+        "portal",
+        "package"
+      ]
+    },
+    {
+      "paths": [
+        "scripts/project_hub_check_publish.py",
+        "scripts/tests/test_check_wrapper.py",
+        "scripts/tests/test_check_plugin_contract.py"
+      ],
+      "profiles": [
+        "runner"
+      ]
+    },
+    {
+      "paths": [
+        "scripts/tests/test_checks_ui.py"
+      ],
+      "profiles": [
+        "css",
+        "javascript"
+      ]
+    },
+    {
+      "paths": [
+        "scripts/tests/test_checks_http.py"
+      ],
+      "profiles": [
+        "core",
+        "portal"
+      ]
+    }
+  ]
+}

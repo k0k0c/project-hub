@@ -1,0 +1,66 @@
+# Project workflow: local history is autonomous; publication remains explicit.
+prefix_rule(
+    pattern = ["git", "add"],
+    decision = "allow",
+    justification = "Staging files for a local project commit is allowed."
+)
+
+prefix_rule(
+    pattern = ["git", "commit"],
+    decision = "allow",
+    justification = "Intermediate local commits are allowed after hook validation."
+)
+
+prefix_rule(
+    pattern = ["git", "push"],
+    decision = "prompt",
+    justification = "Publishing changes requires explicit user confirmation."
+)
+
+prefix_rule(
+    pattern = ["git", "commit", "--no-verify"],
+    decision = "forbidden",
+    justification = "Do not bypass the repository validation hooks."
+)
+
+prefix_rule(
+    pattern = ["git", "commit", "-n"],
+    decision = "forbidden",
+    justification = "Do not bypass the repository validation hooks."
+)
+
+prefix_rule(
+    pattern = ["git", "commit", "--amend"],
+    decision = "prompt",
+    justification = "Rewriting an existing commit requires explicit confirmation."
+)
+
+prefix_rule(
+    pattern = ["git", "reset", "--hard"],
+    decision = "forbidden",
+    justification = "Use a deliberate recovery step instead of discarding the worktree."
+)
+
+prefix_rule(
+    pattern = ["git", "clean"],
+    decision = "forbidden",
+    justification = "Do not remove untracked project data automatically."
+)
+
+prefix_rule(
+    pattern = ["git", "push", "--force"],
+    decision = "forbidden",
+    justification = "Force-push is not permitted for the project."
+)
+
+prefix_rule(
+    pattern = ["git", "push", "-f"],
+    decision = "forbidden",
+    justification = "Force-push is not permitted for the project."
+)
+
+prefix_rule(
+    pattern = ["git", "push", "--delete"],
+    decision = "forbidden",
+    justification = "Remote branch deletion is not permitted automatically."
+)

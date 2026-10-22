@@ -1,0 +1,9 @@
+# Project-local Codex defaults. The project is trusted in the user config.
+# Keep source edits autonomous; command rules retain a confirmation gate for publication.
+sandbox_mode = "workspace-write"
+approval_policy = "never"
+approvals_reviewer = "user"
+
+web_search = "live"
+[sandbox_workspace_write]
+network_access = true

@@ -1,0 +1,30 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "project-hub",
+  "version": "0.2.0",
+  "description": "Optional project memory, progress and advisory coordination that never blocks agent file edits.",
+  "author": {
+    "name": "Local developer"
+  },
+  "repository": "https://github.com/k0k0c/project-hub",
+  "keywords": [
+    "project-memory",
+    "coordination"
+  ],
+  "extensions": {
+    "com.openai": {
+      "hooks": "./hooks/hooks.json",
+      "interface": {
+        "displayName": "Project Hub for Codex",
+        "shortDescription": "Coordinate project work across chats.",
+        "longDescription": "Read project memory and record compact results when useful. Parents coordinate their subagents directly. Hub hooks do not grant or deny file access; missing reservations and unavailable tracking never prevent work.",
+        "developerName": "Local developer",
+        "category": "Productivity",
+        "capabilities": [],
+        "defaultPrompt": [
+          "Show the project context and overlapping work."
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,170 @@
+.agent-settings-page #hub-connections-manager.connections-page { margin:0; padding:0; background:transparent; border:0; border-radius:0; }
+#hub-connections-manager .connection-content { flex:1; min-width:0; }
+#hub-connections-manager .connection-meta { overflow-wrap:anywhere; }
+#hub-connections-manager .connection-card.is-revoked { opacity:1; }
+#hub-connections-manager .connection-card.is-revoked > .connection-content > .connection-meta { color:var(--hub-muted,var(--muted)); }
+#hub-connections-manager .connection-actions { display:flex; gap:8px; }
+#hub-connections-manager .connections-head { display:flex; flex-direction:row; flex-wrap:wrap; align-items:flex-start; justify-content:space-between; gap:12px 16px; margin:0 0 14px; }
+#hub-connections-manager .connection-heading { flex:1 1 180px; min-width:0; }
+#hub-connections-manager .connection-title { display:flex; flex-wrap:wrap; align-items:center; gap:8px 12px; }
+#hub-connections-manager .connection-title h2 { margin:0; overflow-wrap:anywhere; }
+#hub-connections-manager .connections-invite { margin:0; padding:0; border:0; }
+#hub-connections-manager .settings-header-actions { display:flex; flex-wrap:wrap; align-items:center; justify-content:flex-end; gap:8px; margin-left:auto; }
+#hub-connections-manager .connections-status:empty { display:none; }
+#hub-connections-manager .connection-table-wrap { overflow-x:auto; }
+#hub-connections-manager table { width:100%; border-collapse:collapse; table-layout:fixed; }
+#hub-connections-manager th,#hub-connections-manager td { padding:12px 9px; text-align:left; border-bottom:1px solid var(--hub-line,var(--line)); vertical-align:top; overflow-wrap:anywhere; }
+#hub-connections-manager th { font-size:12px; color:var(--hub-muted,var(--muted)); font-weight:500; }
+#hub-connections-manager td { font-size:13px; }
+#hub-connections-manager small { display:block; margin-top:4px; }
+#hub-connections-manager .connection-catalog th:first-child { width:25%; }
+#hub-connections-manager .connection-catalog th:last-child { width:90px; }
+#hub-connections-manager .connection-catalog th:nth-child(3) { width:75px; }
+#hub-connections-manager .connection-catalog-help,#hub-connections-manager .connection-projects > p { font-size:12px; color:var(--hub-muted,var(--muted)); }
+#hub-connections-manager .connection-pagination { display:flex; justify-content:flex-end; align-items:center; gap:10px; margin-top:14px; font-size:12px; }
+#hub-connections-manager .connection-tabs { display:flex; gap:8px; border-bottom:1px solid var(--hub-line,var(--line)); margin-bottom:18px; }
+#hub-connections-manager .connection-tabs button { background:transparent; border:0; border-bottom:2px solid transparent; border-radius:0; padding:10px 12px; }
+#hub-connections-manager .connection-tabs button[aria-selected="true"] { border-bottom-color:var(--hub-accent,var(--accent)); color:var(--hub-accent,var(--accent)); }
+#hub-connections-manager .connection-status-row { display:flex; align-items:flex-start; justify-content:space-between; gap:18px; padding:16px 0; border-bottom:1px solid var(--hub-line,var(--line)); }
+#hub-connections-manager .connection-status-row > div { min-width:0; }
+#hub-connections-manager .connection-status-row h3 { margin-bottom:8px; }
+#hub-connections-manager .connection-status-row p { color:var(--hub-muted,var(--muted)); font-size:13px; margin-top:8px; }
+#hub-connections-manager .connection-status-row > button { flex-shrink:0; }
+#hub-connections-manager .connection-direction,
+#hub-connections-manager .connection-diagnostic-group { max-width:820px; padding:18px 0; border-bottom:1px solid var(--hub-line,var(--line)); }
+#hub-connections-manager .connection-direction > h3,
+#hub-connections-manager .connection-diagnostic-group > h3 { margin:0 0 10px; }
+#hub-connections-manager .connection-direction > p,
+#hub-connections-manager .connection-diagnostic-group > p,
+#hub-connections-manager .connection-help-card p { color:var(--hub-muted,var(--muted)); font-size:13px; line-height:1.6; }
+#hub-connections-manager .connection-direction > strong { display:inline-block; margin:4px 0; }
+#hub-connections-manager .connection-help-card { background:var(--hub-panel,var(--panel)); border:1px solid var(--hub-line,var(--line)); border-radius:8px; padding:14px 16px; margin:12px 0; }
+#hub-connections-manager .connection-help-card h4 { margin:0 0 6px; font-size:14px; }
+#hub-connections-manager .connection-help-card p { margin:0; }
+#hub-connections-manager .connection-rule-receipt { padding:12px 0; }
+#hub-connections-manager .connection-rule-receipt h3 { font-size:14px; margin:0 0 6px; }
+#hub-connections-manager .connection-rule-receipt p { margin:4px 0; font-size:12px; color:var(--hub-muted,var(--muted)); }
+#hub-connections-manager .connection-rule-receipt a { font-size:12px; }
+#hub-connections-manager .connection-direction .connection-control { border-top:1px solid var(--hub-line,var(--line)); padding-top:14px; }
+#hub-connections-manager .connection-diagnostic-group .connection-capabilities { border-top:1px solid var(--hub-line,var(--line)); }
+#hub-connections-manager .connection-identity,#hub-connections-manager .connection-project-dialog dl { display:grid; grid-template-columns:minmax(140px,1fr) minmax(0,2fr); gap:10px 18px; }
+#hub-connections-manager dt { color:var(--hub-muted,var(--muted)); }
+#hub-connections-manager dd { margin:0; overflow-wrap:anywhere; }
+#hub-connections-manager .connection-projects { max-width:none; }
+#hub-connections-manager .connection-projects th:last-child { width:110px; }
+#hub-connections-manager .connection-project-dialog { background:var(--hub-panel,var(--panel)); color:var(--hub-text,var(--text)); border:1px solid var(--hub-line,var(--line)); border-radius:10px; width:min(700px,calc(100% - 32px)); max-height:85vh; padding:24px; overflow:auto; }
+#hub-connections-manager .connection-project-dialog::backdrop { background:rgba(0,0,0,.65); }
+#hub-connections-manager .connection-project-dialog .actions { display:flex; flex-wrap:wrap; gap:8px; margin:18px 0 10px; }
+#hub-connections-manager pre { white-space:pre-wrap; overflow-wrap:anywhere; font-size:12px; }
+#hub-connections-manager .connection-access { border-top:1px solid var(--hub-line,var(--line)); padding-top:18px; margin-top:20px; }
+#hub-connections-manager .connection-access-kinds { max-width:420px; margin:0; }
+#hub-connections-manager .connection-access-kinds p { font-size:12px; }
+#hub-connections-manager .connection-invitation { padding:16px; margin-bottom:20px; border:1px solid var(--hub-line,var(--line)); border-radius:8px; }
+#hub-connections-manager .connection-invitation label { display:block; }
+#hub-connections-manager .connection-invitation input { display:block; width:100%; padding:8px; margin:8px 0; }
+#hub-connections-manager .connection-invitation button { margin:0 8px 0 0; }
+@media(max-width:600px) {
+  #hub-connections-manager .connections-head { flex-wrap:wrap; }
+  #hub-connections-manager .connection-catalog { min-width:590px; }
+  #hub-connections-manager .connection-projects table { min-width:500px; }
+  #hub-connections-manager .connection-status-row { flex-wrap:wrap; }
+  #hub-connections-manager .connection-identity,#hub-connections-manager .connection-project-dialog dl { grid-template-columns:1fr; gap:4px; }
+  #hub-connections-manager dd { margin-bottom:10px; }
+  #hub-connections-manager .connection-project-dialog { padding:18px; }
+  #hub-connections-manager .connection-tabs { overflow-x:auto; }
+  #hub-connections-manager .connection-tabs button { flex:0 0 auto; }
+}
+#hub-connections-manager details { margin:14px 0; }
+#hub-connections-manager summary { cursor:pointer; font-size:13px; }
+#hub-connections-manager .connection-setup li { margin:10px 0; font-size:13px; line-height:1.6; }
+#hub-connections-manager .connection-capabilities { margin-top:20px; border-top:1px solid var(--hub-line,var(--line)); padding-top:14px; }
+#hub-connections-manager .connection-capabilities h4 { font-size:14px; margin:14px 0 8px; }
+#hub-connections-manager .connection-capabilities p,
+#hub-connections-manager .connection-control p,
+#hub-connections-manager .connection-rule-report p { font-size:12px; line-height:1.6; margin:6px 0; overflow-wrap:anywhere; }
+#hub-connections-manager .connection-capability-list,
+#hub-connections-manager .connection-test-list { list-style:none; padding:0; margin:12px 0; }
+#hub-connections-manager .connection-capability-list li,
+#hub-connections-manager .connection-test-list li { display:flex; flex-wrap:wrap; gap:4px 14px; padding:10px 0; border-top:1px solid var(--hub-line,var(--line)); }
+#hub-connections-manager .connection-capability-list strong,
+#hub-connections-manager .connection-test-list strong { font-size:12px; overflow-wrap:anywhere; }
+#hub-connections-manager .connection-capability-list p,
+#hub-connections-manager .connection-test-list p { flex:1 1 100%; margin:0; }
+#hub-connections-manager .capability-state,
+#hub-connections-manager .connection-capability-list time { font-size:12px; color:var(--hub-muted,var(--muted)); }
+#hub-connections-manager [data-capability-state="verified"],
+#hub-connections-manager [data-capability-state="passed"] { color:var(--success,#83cca1); }
+#hub-connections-manager [data-capability-state="failed"],
+#hub-connections-manager [data-capability-state="timeout"],
+#hub-connections-manager [data-capability-state="timed_out"],
+#hub-connections-manager .connection-test-overdue { color:var(--warning,#e9ba74); }
+#hub-connections-manager .connection-native-chat { overflow-wrap:anywhere; }
+#hub-connections-manager .connection-control { max-width:720px; }
+#hub-connections-manager .connection-projects { max-width:none; overflow-wrap:anywhere; padding:20px; background:var(--hub-panel,var(--panel)); border:1px solid var(--hub-line,var(--line)); border-radius:10px; }
+#hub-connections-manager .connection-projects form { display:grid; gap:10px; margin:16px 0; }
+#hub-connections-manager .connection-projects label { display:grid; gap:6px; }
+#hub-connections-manager .connection-projects input,
+#hub-connections-manager .connection-projects textarea,
+#hub-connections-manager .connection-projects select { width:100%; min-width:0; }
+#hub-connections-manager .connection-projects pre { overflow:auto; max-height:320px; }
+#hub-connections-manager .connection-control form { display:grid; grid-template-columns:minmax(140px,1fr) minmax(0,2fr); gap:10px 18px; margin:16px 0; align-items:center; }
+#hub-connections-manager .connection-control input,
+#hub-connections-manager .connection-control select { width:100%; min-width:0; }
+#hub-connections-manager .connection-control form p { grid-column:2; }
+#hub-connections-manager .connection-control form button { grid-column:2; justify-self:start; }
+#hub-connections-manager .connection-section {
+  min-width:0; padding:20px; margin:0 0 16px;
+  background:var(--hub-panel,var(--panel)); border:1px solid var(--hub-line,var(--line)); border-radius:10px;
+}
+#hub-connections-manager .connection-section-head { display:flex; flex-wrap:wrap; align-items:flex-start; justify-content:space-between; gap:8px 16px; margin-bottom:12px; }
+#hub-connections-manager .connection-section h3 { color:var(--hub-text,var(--text)); font-size:15px; margin:0 0 10px; }
+#hub-connections-manager .connection-section-head h3 { margin:0; }
+#hub-connections-manager .connection-section p { color:var(--hub-muted,var(--muted)); font-size:13px; line-height:1.6; margin:8px 0; overflow-wrap:anywhere; }
+#hub-connections-manager .connection-section .connection-direction-label { color:var(--hub-accent,var(--accent)); font-size:12px; font-weight:500; }
+#hub-connections-manager .connection-section .connection-evidence-origin,
+#hub-connections-manager .connection-section time { color:var(--hub-muted,var(--muted)); font-size:12px; }
+#hub-connections-manager .connection-control-route,
+#hub-connections-manager .connection-incoming { border-top:2px solid var(--hub-accent,var(--accent)); }
+#hub-connections-manager .connection-feature-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:16px; margin-bottom:16px; }
+#hub-connections-manager .connection-feature-grid .connection-section { margin:0; }
+#hub-connections-manager .connection-feature .connection-section-head { display:block; }
+#hub-connections-manager .connection-feature .capability-state { display:inline-block; margin-top:8px; }
+#hub-connections-manager .capability-state { font-weight:500; overflow-wrap:anywhere; }
+#hub-connections-manager [data-capability-state="ready"],
+#hub-connections-manager [data-capability-state="source_available"],
+#hub-connections-manager [data-capability-state="link_template"] { color:var(--hub-accent,var(--accent)); }
+#hub-connections-manager [data-capability-state="stale"],
+#hub-connections-manager [data-capability-state="configuration_mismatch"] { color:var(--warning,#e9ba74); }
+#hub-connections-manager .connection-test-list { margin-bottom:0; }
+#hub-connections-manager .connection-test-list li { display:block; padding:14px 0; }
+#hub-connections-manager .connection-test-list li:last-child { padding-bottom:0; }
+#hub-connections-manager .connection-history-link { display:block; margin-top:12px; font-size:12px; }
+#hub-connections-manager .connection-test-table-scroll { overflow:auto; margin-top:16px; }
+#hub-connections-manager .connection-test-table { width:100%; min-width:660px; border-collapse:collapse; font-size:12px; }
+#hub-connections-manager .connection-test-table th { text-align:left; color:var(--hub-muted,var(--muted)); font-weight:500; }
+#hub-connections-manager .connection-test-table th,
+#hub-connections-manager .connection-test-table td { padding:12px 10px; border-bottom:1px solid var(--hub-line,var(--line)); vertical-align:top; }
+#hub-connections-manager .connection-test-table td:first-child { white-space:nowrap; }
+#hub-connections-manager .connection-test-table td small { display:block; color:var(--hub-muted,var(--muted)); margin-top:5px; }
+#hub-connections-manager .connection-test-table details { margin:0; }
+#hub-connections-manager .connection-test-table summary { color:var(--hub-accent,var(--accent)); }
+#hub-connections-manager .connection-test-detail { min-width:180px; max-width:360px; padding-top:12px; overflow-wrap:anywhere; }
+#hub-connections-manager .connection-test-detail code { white-space:pre-wrap; overflow-wrap:anywhere; }
+#hub-connections-manager .connection-history-pages { display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; margin-top:16px; font-size:12px; color:var(--hub-muted,var(--muted)); }
+#hub-connections-manager .connection-history-pages > div { display:flex; gap:8px; }
+#hub-connections-manager .connection-model-reference { margin:12px 0; color:var(--hub-muted,var(--muted)); font-size:12px; line-height:1.6; }
+#hub-connections-manager .connection-page-intro { color:var(--hub-muted,var(--muted)); font-size:13px; margin:0 0 18px; }
+#hub-connections-manager .connection-control { max-width:none; }
+#hub-connections-manager .connection-control form .connection-save-help { margin:0; }
+#hub-connections-manager .connection-control-key-help { border-left:2px solid var(--hub-accent,var(--accent)); padding-left:12px; }
+#hub-connections-manager .connection-tabs { flex-wrap:wrap; }
+@media(max-width:700px) {
+  #hub-connections-manager .connection-feature-grid { grid-template-columns:1fr; }
+  #hub-connections-manager .connection-section { padding:16px; }
+  #hub-connections-manager .connection-identity { grid-template-columns:1fr; gap:5px; }
+  #hub-connections-manager .connection-identity dd { margin-bottom:8px; }
+  #hub-connections-manager .connection-actions { width:100%; }
+  #hub-connections-manager .connection-control form { grid-template-columns:1fr; }
+  #hub-connections-manager .connection-control form p,
+  #hub-connections-manager .connection-control form button { grid-column:1; }
+}
