@@ -1,5 +1,9 @@
 # Project Hub
 
+**[Download Project Hub 0.3.2 — Pre-alpha 1](https://github.com/k0k0c/project-hub/releases/tag/v0.3.2)**
+
+Windows 10/11 x64. The release page includes the installer and checksums.
+
 Project Hub is a local Windows application for organizing AI agents' tasks and
 work stages, keeping history, reports, project documentation, and architecture
 notes in one place. It connects your working chats, agents, and projects so
