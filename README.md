@@ -55,8 +55,15 @@ managed without linking a folder.
 
 ## Connecting an agent
 
+Use an agent application that organizes work into projects or workspace folders
+and supports persistent instructions, such as Codex, Cursor, Antigravity, or
+similar tools. The invitation link gives the agent instructions to connect the
+application to Hub, save Hub's working rules, and link the current project.
+Compatibility depends on the application's MCP and project features.
+
 1. In Hub, open **Settings → Agents and connections → Applications**.
-2. Create an invitation and give it to the agent in your chosen application.
+2. Create an invitation in Hub, then paste its link into the agent's chat in your
+   open project and ask the agent to connect to Project Hub.
 3. Follow the setup instructions. If the application cannot save settings
    automatically, follow the documentation to configure it manually.
 4. Check that the agent can see Hub tools and identify the correct project.
