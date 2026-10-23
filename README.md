@@ -49,9 +49,13 @@ EXE file. Python is included. Windows 10 and 11 on x64 are supported. The shortc
 starts a local server and opens it in your browser. You can also check the server
 status through the system tray icon.
 
-After starting Hub, open **Projects** and add a project. You can specify a source
-folder if you want to explore its code. Tasks, documents, and history can also be
-managed without linking a folder.
+After starting Hub, connect your agent as described below. The agent uses the
+project already open in its application to find or create the matching project
+in Hub. You do not need to create it or select its source folder in Hub first;
+the agent will ask you to choose if the match is ambiguous.
+
+You can also add a project manually in **Projects** to work without an agent.
+A source folder is optional for tasks, documents, and history.
 
 ## Connecting an agent
 
