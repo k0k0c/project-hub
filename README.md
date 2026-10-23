@@ -1,108 +1,107 @@
 # Project Hub
 
-Project Hub — локальное приложение для Windows, которое помогает вести задачи
-и этапы работы ИИ-агентов, сохранять историю, отчёты, проектную документацию и
-архитектурные материалы в одном месте. Оно связывает рабочие чаты, агентские
-подключения и выбранные проекты, чтобы решения и результаты не терялись между
-сессиями.
+Project Hub is a local Windows application for organizing AI agents' tasks and
+work stages, keeping history, reports, project documentation, and architecture
+notes in one place. It connects your working chats, agents, and projects so
+decisions and results carry over between sessions.
 
-Проект находится на стадии публичного pre-alpha-тестирования. Возможности и
-совместимость ещё развиваются; перед важной работой сохраняйте резервные копии
-и учитывайте ограничения ниже.
+The project is in public pre-alpha testing. Features and compatibility are still
+evolving. Keep backups before important work and review the limitations below.
 
-## Три независимых подключения
+## Three independent connections
 
-**Агент → Hub: задачи и общий контекст.** Агент, с которым вы работаете в своём
-приложении, получает инструменты Hub через MCP — протокол подключения внешних
-инструментов к ИИ-помощникам. Он может читать состояние проекта, создавать и
-редактировать задачи, вести этапы, сохранять отчёты и работать с документацией.
-Для подключения приложению нужны поддержка MCP по HTTP, авторизации и контекста
-проекта. Совместимость зависит от возможностей конкретного приложения.
-Отдельный ключ модели в Hub для этого не требуется: агент использует модель,
-настроенную в своём приложении.
+**Agent → Hub: tasks and shared context.** The agent you work with in your own
+application accesses Hub tools through MCP, the Model Context Protocol for
+connecting external tools to AI assistants. It can read project status, create
+and edit tasks, track stages, save reports, and work with documentation. The
+application needs to support MCP over HTTP, authentication, and project context.
+Compatibility depends on the application's capabilities. You do not need a
+separate model API key in Hub for this connection: the agent uses the model
+configured in its own application.
 
-**Hub → приложение с агентом: чаты и запуск задач.** Из Hub можно перейти к
-связанному чату, создать чат для задачи и отправить задание агенту. Сейчас
-готовая интеграция управления чатами доступна для Codex. Она экспериментальная,
-настраивается отдельно и требует работающего приложения Codex. После обновлений
-Codex совместимость может измениться. Подключение агента через MCP само по себе
-не включает управление его чатами.
+**Hub → agent application: chats and task launches.** From Hub, you can open a
+linked chat, create a chat for a task, and send work to an agent. Chat control
+integration is currently available for Codex. It is experimental, requires
+separate setup, and needs the Codex application to be running. Compatibility may
+change after Codex updates. Connecting an agent through MCP does not by itself
+enable control of its chats.
 
-**Hub → модель: исследование и документация.** Hub может напрямую отправлять запросы для исследования
-архитектуры, кода и документации. Для этого не нужен Codex, но сам Hub должен
-работать. Вы можете войти через аккаунт ChatGPT или указать API-ключ — ключ
-доступа, полученный у сервиса моделей. Реализованы подключения к API OpenAI,
-Anthropic и Google Gemini, а также сервисам с совместимым Chat Completions API.
-Прямые запросы помогают объяснять проект и готовить документацию; изменение
-кода по обычным задачам остаётся работой внешнего агента. Вход через аккаунты
-других сервисов пока не реализован. Подключения к моделям экспериментальные:
-доступ к конкретной модели нужно проверить с вашим аккаунтом или ключом.
+**Hub → model: research and documentation.** Hub can send requests directly to a
+model to explore architecture, code, and documentation. This does not require
+Codex, but Hub itself must be running. You can sign in with a ChatGPT account or
+provide an API key, an access key obtained from a model service. Connections are
+implemented for the OpenAI, Anthropic, and Google Gemini APIs, as well as services
+with a compatible Chat Completions API. Direct requests help explain a project
+and prepare documentation; code changes for ordinary tasks remain the external
+agent's responsibility. Account sign-in for other services is not yet
+implemented. Model connections are experimental: check access to your chosen
+model with your own account or key.
 
-## Установка
+## Installation
 
-Скачайте последнюю версию со страницы
-[релизов Project Hub](https://github.com/k0k0c/project-hub/releases) и запустите
-EXE-файл. Python уже включён в комплект. Поддерживаются Windows 10 и 11 на
-x64. Ярлык запускает локальный сервер и открывает его в браузере; состояние
-серверной части также доступно через значок в области уведомлений.
+Download the latest version from
+[Project Hub releases](https://github.com/k0k0c/project-hub/releases) and run the
+EXE file. Python is included. Windows 10 and 11 on x64 are supported. The shortcut
+starts a local server and opens it in your browser. You can also check the server
+status through the system tray icon.
 
-После запуска откройте раздел **Проекты** и добавьте проект. Папку исходников
-можно указать, если вы хотите исследовать код. Задачи, документы и историю
-можно вести и без привязки к папке.
+After starting Hub, open **Projects** and add a project. You can specify a source
+folder if you want to explore its code. Tasks, documents, and history can also be
+managed without linking a folder.
 
-## Подключение агента
+## Connecting an agent
 
-1. В Hub откройте **Настройки → Агенты и подключения → Приложения**.
-2. Создайте приглашение и передайте его агенту в выбранном приложении.
-3. Следуйте инструкциям настройки. Если приложение не умеет сохранять настройки
-   автоматически, потребуется ручная настройка по документации.
-4. Проверьте, что агент видит инструменты Hub и правильно определяет проект.
-5. Попросите агента создать небольшую задачу и убедитесь, что она появилась в Hub.
+1. In Hub, open **Settings → Agents and connections → Applications**.
+2. Create an invitation and give it to the agent in your chosen application.
+3. Follow the setup instructions. If the application cannot save settings
+   automatically, follow the documentation to configure it manually.
+4. Check that the agent can see Hub tools and identify the correct project.
+5. Ask the agent to create a small task and check that it appears in Hub.
 
-Во время настройки агент может предложить сохранить постоянные правила работы
-с Hub. Перед сохранением проверьте текст правил и область их действия.
+During setup, the agent may offer to save persistent instructions for working
+with Hub. Review the instructions and where they will apply before saving them.
 
-Для управления чатами Codex попросите агента настроить отдельную интеграцию и
-выполните проверку на вкладке **Чаты приложения** в настройках подключения.
+To control Codex chats, ask the agent to set up the separate integration, then
+run the check on the **Application chats** tab in the connection settings.
 
-Для прямых запросов из Hub откройте **Настройки → Агенты и подключения →
-Запросы к моделям**. Выберите вход через ChatGPT либо добавьте свой API-ключ.
-Выберите модель, проверьте соединение и укажите подключение для запросов Hub.
-Эта настройка необязательна для обычного учёта задач через MCP.
+For direct requests from Hub, open **Settings → Agents and connections → Model
+requests**. Choose ChatGPT sign-in or add your own API key. Select a model, test
+the connection, and choose which connection Hub should use for its requests.
+This setup is optional for ordinary task tracking through MCP.
 
-## Повседневная работа
+## Everyday use
 
-Создавайте задачу, фиксируйте этапы и прикрепляйте к ним контекст, отчёты,
-ссылки и документы. Просматривайте историю проекта, возвращайтесь к прежним
-решениям и используйте архитектурные материалы при новых обсуждениях. Разделы
-и названия в приложении могут меняться во время pre-alpha-тестирования.
+Create tasks, record stages, and attach context, reports, links, and documents.
+Browse project history, revisit earlier decisions, and use architecture notes
+in new discussions. Sections and labels in the application may change during
+pre-alpha testing.
 
-Удобный рабочий цикл выглядит так: сначала выберите проект и сформулируйте
-задачу, затем попросите агента уточнить план и зафиксируйте результат каждого
-этапа. После завершения проверьте отчёт, ссылки и приложенные материалы в Hub.
-В следующем чате попросите подключённого агента прочитать состояние проекта
-в Hub и продолжить нужную задачу. Подключение агента даёт ему доступ к операциям
-Hub. Доступ к исходной папке
-определяется настройками клиента и операционной системы.
+A useful workflow is to choose a project and describe a task, ask the agent to
+refine the plan, and record the outcome of each stage. When the work is complete,
+review the report, links, and attachments in Hub. In your next chat, ask the
+connected agent to read the project's current state in Hub and continue the task
+you need. Connecting an agent gives it access to Hub operations. Access to the
+source folder is controlled by the client application and operating system
+settings.
 
-Для исследования можно открыть отдельный запрос к модели: например, попросить
-сравнить варианты архитектуры или объяснить найденный фрагмент документации.
-Результаты исследований сохраняются в знаниях выбранного проекта, отдельно от
-выполнения обычных задач. Перед передачей чувствительных материалов проверьте,
-какой контекст выбран и какой провайдер будет его обрабатывать.
+For research, you can send a separate request to a model, such as comparing
+architecture options or explaining a section of documentation. Research results
+are saved in the selected project's knowledge section, separately from ordinary
+task execution. Before sharing sensitive material, check which context is
+selected and which provider will process it.
 
-Подробнее:
+Learn more:
 
-- [Установка для Windows](docs/windows-installer.md)
-- [Подключение проектов по MCP](docs/mcp-project-connections.md)
-- [Управление чатами Codex](docs/codex-desktop-control.md)
-- [Анализ архитектуры и кода](docs/agent-analysis.md)
-- [Резервные копии](docs/backups.md)
+- [Windows installation](docs/windows-installer.md)
+- [Connecting projects through MCP](docs/mcp-project-connections.md)
+- [Codex chat control](docs/codex-desktop-control.md)
+- [Architecture and code analysis](docs/agent-analysis.md)
+- [Backups](docs/backups.md)
 
-## Ограничения и данные
+## Limitations and data
 
-Hub хранит данные локально, но выбранный вами контекст или код может передаваться
-внешнему агенту или провайдеру модели при выполнении запроса. Действуют лимиты,
-условия и возможная плата соответствующего сервиса. Hub не собирает автоматически
-всю историю ваших чатов. Подключённые агенты и сервисы моделей получают контекст,
-необходимый для выполняемых операций.
+Hub stores data locally, but the context or code you select may be sent to an
+external agent or model provider when a request runs. The relevant service's
+limits, terms, and possible charges apply. Hub does not automatically collect
+your entire chat history. Connected agents and model services receive the
+context needed for the operations they perform.
