@@ -126,8 +126,10 @@ adding a profile does not require editing a hardcoded CLI choice list.
 
 ## Execution time and diagnostics
 
-Config version 2 defaults `timeoutSeconds` to 1800 seconds per command. Override
-with `--timeout SECONDS` (positive finite value, maximum 86400). Version 1 configs
+Config version 2 provides a configurable per-command limit. This repository sets
+`timeoutSeconds` to 3600 seconds so full Windows checks can finish when Git and
+filesystem operations are slow. Override with `--timeout SECONDS` (positive finite
+value, maximum 86400). Version 1 configs
 remain readable and keep their 900-second default. Changing timeout changes the
 receipt key. Increase an observed insufficient limit in the standard runner;
 do not create another full-suite script or treat a timeout as a test assertion.

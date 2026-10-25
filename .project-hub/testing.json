@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "timeoutSeconds": 1800,
+  "timeoutSeconds": 3600,
   "javascriptProfiles": [
     "css", "javascript", "documentation-ui", "html-documents", "artifacts", "distribution",
     "storage-acceptance", "settings-ui", "setup-wizard", "outbound-api", "test-files", "full", "chatgpt-auth"
