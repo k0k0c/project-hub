@@ -75,7 +75,8 @@ function settingsAuditRow(entry) {
   return `<li><time datetime="${escape(timestamp)}" title="${escape(timestamp)}">${escape(formatted)}</time><span class="settings-audit-actor">${escape(actor)}</span><span>${escape(affected || (globalThis.HubI18n?.t?.("settings.d367c360b8c5") ?? 'Настройки проекта'))}</span></li>`;
 }
 function settingsHeader(section='') {
-  return (globalThis.HubI18n?.t ? globalThis.HubI18n.t("settings.f84257068b68",{v0:(settingsTabs(false,['architecture','agents','instructions'].includes(section)?(section==='instructions'?'agents':section):''))}) : `<div class="eyebrow">PROJECT HUB</div><h1>Настройки</h1><p class="intro">Параметры проекта, ваш интерфейс и правила работы с Hub.</p>${settingsTabs(false,['architecture','agents','instructions'].includes(section)?(section==='instructions'?'agents':section):'')}`);
+  const header = (globalThis.HubI18n?.t ? globalThis.HubI18n.t("settings.f84257068b68",{v0:(settingsTabs(false,['architecture','agents','instructions'].includes(section)?(section==='instructions'?'agents':section):''))}) : `<div class="eyebrow">PROJECT HUB</div><h1>Настройки</h1><p class="intro">Параметры проекта, ваш интерфейс и правила работы с Hub.</p>${settingsTabs(false,['architecture','agents','instructions'].includes(section)?(section==='instructions'?'agents':section):'')}`);
+  return header + (!section ? globalThis.HubSetupWizardUI?.entry?.() || '' : '');
 }
 let interfaceLanguageBusy = false, interfaceLanguageMessage = '';
 function interfaceSettingsPanel() {

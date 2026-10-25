@@ -176,6 +176,45 @@ class Launches:
                     return item
         raise BindingError('native_project_unverified','Choose a recorded source or related chat of this task and selected stage',409)
 
+    def preferred_route(self, project, task, routes, related):
+        """Recover creation provenance without choosing an arbitrary workspace."""
+        from agent_runtime import actor_id
+        from native_chats import for_actor
+        item = next((item for item in self.registry.store(project).task_context(task)['tasks']
+                     if item['id'] == task), {})
+        creator = (item.get('createdBy') or {}).get('session')
+        if not creator or not routes:
+            return None
+        available = {(route['connection'], route['bindingId']) for route in routes}
+        matches = set()
+        with self.registry.connect() as connection:
+            if connection.execute("SELECT 1 FROM sqlite_master WHERE name='agent_project_sessions'").fetchone():
+                for row in connection.execute('SELECT connection,session,binding FROM agent_project_sessions WHERE project=?', (project,)):
+                    pair = (row['connection'], row['binding'])
+                    if pair in available and creator in (row['session'], actor_id(row['connection'], row['session']),
+                                                         actor_id(row['connection'], row['session'], project)):
+                        matches.add(pair)
+        if len(matches) == 1:
+            connection, binding = next(iter(matches))
+            return dict(connection=connection, bindingId=binding)
+        connections = {pair[0] for pair in matches}
+        if len(connections) == 1:
+            return dict(connection=next(iter(connections)))
+        if matches:
+            return None
+        native = for_actor(self.registry, project, creator)
+        if native is None:
+            native = next((link['native'] for link in related if link['native'].get('nativeId') == creator), None)
+        if native:
+            candidates = [route for route in routes if self.matching_client(
+                native, self.profiles.binding(route['connection'])['client'], self.profiles.profile(route['connection']))]
+            if len(candidates) == 1:
+                return {key:candidates[0][key] for key in ('connection', 'bindingId')}
+            connections = {route['connection'] for route in candidates}
+            if len(connections) == 1:
+                return dict(connection=next(iter(connections)))
+        return None
+
     def task_state(self, project, task):
         self.task_input(project,task)
         routes = []
@@ -220,7 +259,8 @@ class Launches:
         # A task link can also have a stage link. Keep one choice per relation;
         # the UI additionally deduplicates the selected stage by native ID.
         chats = list({(c['connection'], c['bindingId'], c['nativeId'], c.get('stage'), c['scope']):c for c in chats}.values())
-        return dict(project=project,task=task,routes=routes,launches=launches,chats=chats)
+        return dict(project=project,task=task,routes=routes,launches=launches,chats=chats,
+                    preferredRoute=self.preferred_route(project,task,routes,related))
 
     def _save(self, c, identifier, body):
         body['updatedAt'] = time.time()

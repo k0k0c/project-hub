@@ -400,7 +400,7 @@ def _call_bound(registry, binding, tool, arguments, *, base=None, reauthenticate
                               ('client','clientInstance','host','nativeId','openUri','title','model')}
                 if not task and arguments.get('work'):
                     with hub.connect() as c:
-                        own_work = c.execute('SELECT task FROM work WHERE id=? AND session=?', (arguments['work'], actor)).fetchone()
+                        own_work = c.execute('SELECT task FROM work WHERE id=? AND project=?', (arguments['work'], selected['id'])).fetchone()
                         work_stage = c.execute('SELECT stage FROM work_stages WHERE work=?', (arguments['work'],)).fetchone()
                     if own_work:
                         task, stage = own_work['task'], work_stage['stage'] if work_stage else None

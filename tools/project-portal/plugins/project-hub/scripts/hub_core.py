@@ -656,8 +656,10 @@ class Hub:
             resource(path)
 
     def report(self, session, work, revision, result, checkpoint="", status="active", evidence=None, stage_status=None,
-               stage=None, phase=None, waiting_kind=None):
+               stage=None, phase=None, waiting_kind=None, reconcile=None):
         from work_scope import PHASES, WAITING_KINDS, stages_for
+        from work_reconciliation import request, authorize
+        reconciliation = request(reconcile) if reconcile is not None else None
         if phase is not None and phase not in PHASES:
             raise HubError('invalid_phase', 'Unknown work phase')
         if waiting_kind is not None and (waiting_kind not in WAITING_KINDS or status != 'waiting'):
@@ -678,8 +680,10 @@ class Hub:
         digest = hashlib.sha256(compact([result, checkpoint, status, evidence] + ([stage_status] if stage_status else [])).encode()).hexdigest()
         if stage is not None or phase is not None or waiting_kind is not None:
             digest = hashlib.sha256(compact([digest, stage, phase, waiting_kind]).encode()).hexdigest()
+        if reconciliation is not None:
+            digest = hashlib.sha256(compact([digest, reconciliation]).encode()).hexdigest()
         completed_snapshot = None
-        if status == 'done' and hasattr(self, 'freeze_git_boundary'):
+        if status == 'done' and reconciliation is None and hasattr(self, 'freeze_git_boundary'):
             # Capture outside the coordination write transaction. Retries retain
             # the first acknowledged boundary; ownership is checked before reads.
             with self.connect() as c:
@@ -689,21 +693,30 @@ class Hub:
                     and pending['revision'] == revision and pending['status'] not in ('done', 'cancelled')):
                 completed_snapshot = self.freeze_git_boundary(dict(pending))
         with self.transaction() as c:
+            w = c.execute("SELECT * FROM work WHERE id=?", (work,)).fetchone()
+            if reconciliation is not None and (not w or w['project'] != self.session(c, session)['project']):
+                raise HubError('work_project_mismatch', 'Select the project containing this work before reconciliation')
             old = c.execute('SELECT * FROM receipts WHERE id=?', (receipt,)).fetchone()
             if old:
                 if old['hash'] != digest:
                     raise HubError('revision_conflict', 'This revision was already updated with different content')
                 return json.loads(old['result'])
-            w = c.execute("SELECT * FROM work WHERE id=?", (work,)).fetchone()
-            if not w or w["session"] != session:
-                raise HubError("not_owner", "Only the owning session may update this work")
+            if not w or (w["session"] != session and reconciliation is None):
+                raise HubError("not_owner", "Only the owning session may update this work normally. Read hub_context(work) for explicit project-authorized reconciliation")
             if w["revision"] != revision:
                 raise HubError("revision_conflict", "Read the current work revision before updating", revision=w["revision"])
             if w["status"] in ("done", "cancelled"):
                 raise HubError("work_closed", "Work is already closed")
+            audit = authorize(c, session, w, reconciliation, status, phase, waiting_kind,
+                              user_action=getattr(self, 'user_reconciliation', False)) if reconciliation is not None else None
             if completed_snapshot is not None:
                 c.execute('UPDATE work SET git_snapshot=? WHERE id=?', (completed_snapshot, work))
             self.validate_report_evidence(evidence, w['project'])
+            publication_evidence = evidence
+            if audit is not None:
+                # Validate only new evidence: historical sources can be archived.
+                # Never discard the accepted work's existing evidence or snapshots.
+                evidence = list(dict.fromkeys([*audit['previousEvidence'], *evidence]))
             link = c.execute('SELECT stage FROM work_stages WHERE work=?',(work,)).fetchone()
             linked_stages = stages_for(c, work)
             service_read = ((phase or w['phase']) in ('planning','research','review') and
@@ -728,7 +741,7 @@ class Hub:
                     ORDER BY w.created,w.id""", (w['project'],w['task'],work,selected_stage,selected_stage))]
             effective_stage_status = None if open_work else stage_status
             git_commit = None
-            if status == 'done' and effective_stage_status == 'done' and not hasattr(self, 'registry'):
+            if status == 'done' and effective_stage_status == 'done' and audit is None and not hasattr(self, 'registry'):
                 from git_integration import commit_work, decode_snapshot
                 session_row = c.execute('SELECT workspace FROM sessions WHERE id=?', (w['session'],)).fetchone()
                 captured = decode_snapshot(w['git_snapshot'])
@@ -739,6 +752,8 @@ class Hub:
                         if open_work else None)
             event_body = dict(result=result, checkpoint=checkpoint, evidence=evidence,
                               phase=phase or w['phase'], waitingKind=waiting_kind)
+            if audit is not None:
+                event_body['reconciliation'] = audit
             if deferred:
                 event_body['stageCompletionDeferred'] = deferred
             seq = self.emit(c, w["project"], session, "work." + status, event_body, work)
@@ -757,7 +772,7 @@ class Hub:
                 detail = result + ('\nNext: '+checkpoint if checkpoint else '')
                 if deferred:
                     detail += '\nStage completion deferred; open work: ' + ', '.join(row['id'] for row in open_work[:12])
-                payload=dict(id='work-report-'+work+'-'+str(seq)+'-'+suffix,workId=work,taskId=w['task'],stageId=linked_stage,kind='work.completed' if status=='done' else 'note',title=w['title'],detail=detail,evidence=[dict(path=p,label=p) for p in evidence])
+                payload=dict(id='work-report-'+work+'-'+str(seq)+'-'+suffix,workId=work,taskId=w['task'],stageId=linked_stage,kind='work.completed' if status=='done' else 'note',title=w['title'],detail=detail,evidence=[dict(path=p,label=p) for p in publication_evidence])
                 c.execute('INSERT INTO plan_outbox VALUES (?,?,?)',(payload['id'],w['project'],compact(payload)))
                 effective_for_link = effective_stage_status if linked_stage == selected_stage else None
                 if effective_for_link or (status == 'done' and not service_read):
@@ -772,6 +787,9 @@ class Hub:
                     c.execute('INSERT INTO plan_outbox VALUES (?,?,?)',(payload['id'],w['project'],compact(payload)))
             # Claims remain as history. Closed work is excluded by the transactionally consistent query.
             ack = dict(work=work, revision=seq, status=status)
+            if audit is not None:
+                ack['reconciliation'] = dict(actor=session, owner=w['session'], previousRevision=revision,
+                    gitBoundary='preserved', completedContentCaptured=False)
             if deferred:
                 ack['stageCompletionDeferred'] = deferred
             c.execute('INSERT INTO receipts VALUES (?,?,?)', (receipt, digest, compact(ack)))
@@ -869,7 +887,7 @@ class Hub:
         return dict(actor=dict(session=session,parentSession=parent,agentPath=relation['agent_path'] if relation else None,
                     hookObservedAt=hooks),members=members[:limit],work=page,
                     more=len(members)>limit or len(works)>len(page),
-                    next='Use hub_context(work=id) for resources/evidence, hub_memory for reusable results. Only the owner may report or release work.')
+                    next='Use hub_context(work=id) for resources/evidence and explicit reconciliation; hub_memory for reusable results. Normal reports remain owner-only.')
 
     def lookup(self, session, work=None, query='', offset=0, limit=8):
         limit = max(1, min(int(limit), 20))
@@ -893,6 +911,9 @@ class Hub:
                 describe(c, item)
                 item['evidence'] = json.loads(item['evidence'])
                 item['resources'] = [dict(r) for r in c.execute('SELECT name,mode FROM claims WHERE work=?', (item['id'],))]
+                if item['project'] == s['project']:
+                    from work_reconciliation import preview
+                    preview(c, item)
                 values.append(item)
             page = bounded(values)
         return dict(work=page, more=len(rows) > len(page), next=offset + len(page))

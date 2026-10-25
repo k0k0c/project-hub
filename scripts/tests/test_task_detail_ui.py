@@ -37,8 +37,12 @@ vm.runInNewContext(source.slice(start,end),ctx);
 for(const state of ['active','idle','unknown','waiting']) {
   const html=ctx.taskStatus({id:'task',currentWorks:[],agentActivity:{state}});
   assert.match(html,new RegExp('agent-activity '+state));assert.doesNotMatch(html,/undefined|<time/);
+  assert.match(html,/<button type="button" class="agent-activity/);
+  assert.match(html,/data-task-launch-open="task" data-stage-id="" aria-haspopup="dialog"/);
 }
 assert.match(ctx.taskStatus({id:'task',currentWorks:[{session:'one'}]}),/agent-activity active/);
+assert.match(ctx.taskStatus({id:'task',currentWorks:[]},{id:'step'},true),/data-task-launch-open="task" data-stage-id="step"/);
+assert(!source.includes('TaskLaunchesUI?.render('),'launch form must only render inside the dialog');
 """
         result = subprocess.run(['node','-e',script,str(WEB)],capture_output=True,text=True,timeout=20)
         self.assertEqual(result.returncode,0,result.stderr)

@@ -3,7 +3,7 @@
   "timeoutSeconds": 1800,
   "javascriptProfiles": [
     "css", "javascript", "documentation-ui", "html-documents", "artifacts", "distribution",
-    "storage-acceptance", "settings-ui", "outbound-api", "test-files", "full", "chatgpt-auth"
+    "storage-acceptance", "settings-ui", "setup-wizard", "outbound-api", "test-files", "full", "chatgpt-auth"
   ],
   "sourceTests": {
     "scripts/codex_desktop_bridge.mjs": ["scripts/tests/test_codex_desktop_bridge.py"],
@@ -48,7 +48,12 @@
     "tools/project-portal/web/knowledge.css": ["scripts/tests/test_knowledge_ui.py", "scripts/tests/test_compact_controls.py"],
     "tools/project-portal/web/documentation.js": ["scripts/tests/test_documentation_ui.py", "scripts/tests/test_html_documents_ui.py", "scripts/tests/test_knowledge_ui.py"],
     "tools/project-portal/web/documentation.css": ["scripts/tests/test_documentation_ui.py", "scripts/tests/test_html_documents_ui.py", "scripts/tests/test_compact_controls.py"],
-    "scripts/chatgpt_auth.py": ["scripts/tests/test_chatgpt_auth.py", "scripts/tests/test_chatgpt_crypto.py", "scripts/tests/test_provider_runtime.py", "scripts/tests/test_agent_providers.py", "scripts/tests/test_agent_providers_ui.py", "scripts/tests/test_agent_http.py", "scripts/tests/test_api_agent_runs.py", "scripts/tests/test_portal_asgi.py", "scripts/tests/test_secret_vault.py"]
+    "scripts/chatgpt_auth.py": ["scripts/tests/test_chatgpt_auth.py", "scripts/tests/test_chatgpt_crypto.py", "scripts/tests/test_provider_runtime.py", "scripts/tests/test_agent_providers.py", "scripts/tests/test_agent_providers_ui.py", "scripts/tests/test_agent_http.py", "scripts/tests/test_api_agent_runs.py", "scripts/tests/test_portal_asgi.py", "scripts/tests/test_secret_vault.py"],
+    "scripts/setup_wizard.py": ["scripts/tests/test_setup_wizard.py"],
+    "tools/project-portal/web/setup-wizard.js": ["scripts/tests/test_setup_wizard_ui.py"],
+    "tools/project-portal/web/setup-wizard.css": ["scripts/tests/test_setup_wizard_ui.py"],
+    "scripts/tests/test_setup_wizard.py": ["scripts/tests/test_setup_wizard.py"],
+    "scripts/tests/test_setup_wizard_ui.py": ["scripts/tests/test_setup_wizard_ui.py"]
   },
   "executionEnvironment": {
     "version": 1,
@@ -548,6 +553,30 @@
       "test_hub_launcher.py",
       "test_hub_lifecycle.py"
     ],
+    "work-reconciliation-ui": [
+      "test_work_reconciliation_ui.py",
+      "test_chats_ui.py",
+      "test_task_detail_ui.py",
+      "test_task_launches_ui.py"
+    ],
+    "work-reconciliation": [
+      "test_work_reconciliation.py",
+      "test_work_reconciliation_http.py",
+      "test_work_reconciliation_ui.py",
+      "test_project_hub_plugin.py",
+      "test_agent_gateway.py",
+      "test_agent_http.py",
+      "test_connection_onboarding.py",
+      "test_mcp_transport.py",
+      "test_agent_contracts.py",
+      "test_project_hub_distribution.py",
+      "test_write_acknowledgments.py",
+      "test_settings_completion.py",
+      "test_checkpoint_reconciliation.py",
+      "test_session_reconciliation.py",
+      "test_stage_operations.py",
+      "test_stage_activation.py"
+    ],
     "global-agent-connections": [
       "test_mcp_project_lifecycle.py",
       "test_connection_onboarding.py",
@@ -780,6 +809,13 @@
       "test_compact_controls.py",
       "test_ui_state.py",
       "test_ui_preferences.py"
+    ],
+    "setup-wizard": [
+      "test_setup_wizard.py",
+      "test_setup_wizard_ui.py",
+      "test_settings_ui.py",
+      "test_connections_ui.py",
+      "test_agent_providers_ui.py"
     ],
     "distribution": [
       "test_activation_startup.py",

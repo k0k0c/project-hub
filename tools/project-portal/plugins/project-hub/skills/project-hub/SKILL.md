@@ -464,7 +464,7 @@ The parent supplies bounded assignments, relevant prior results and non-overlapp
 
 Coordinate actual overlapping file edits and shared builds with the parent. `hub_begin` records work even when claims overlap, and returns a `resource_overlap` warning with the observed owners, scope and freshness. Inspect that warning and resolve a confirmed simultaneous edit through direct coordination; it alone does not require waiting. Historical `resource_busy` records describe older refused attempts and do not create a current work handle. Hub claims are not filesystem locks or permission decisions.
 
-Children that voluntarily record Hub work use their own verified identity and returned work/revision handles. Neither a parent link nor agent termination transfers claims or closes work. Never alter or finish another session's reports or claims. The parent can record a consolidated result in its own work, attributing child results accurately. A child finishing its assignment does not automatically complete the whole stage.
+Children that voluntarily record Hub work use their own verified identity and returned work/revision handles. Neither a parent link nor agent termination transfers claims or closes work. Ordinary reports remain owner-only. Explicit project-authorized reconciliation below can close specifically accepted historical work without transferring its ownership. The parent can record a consolidated result in its own work, attributing child results accurately. A child finishing its assignment does not automatically complete the whole stage.
 
 ## Required plan and visible results
 
@@ -485,6 +485,24 @@ binding or bookkeeping fails. Report the actual paths and checks for later
 publication, without inventing a work handle, claim or lifecycle observation.
 
 Save the actual result, evidence and next step with hub_report using your own work/revision. status=done completes the work; stage_status=done completes a fully verified stage when no other work in that stage remains open. If other work is active or waiting, Hub still saves this result and returns `stageCompletionDeferred` with the open work; the stage and its remaining product requirements stay open. A later owning work or explicit plan update can complete the stage after verification. Include findings, checks and limitations in the result, with relative evidence paths for the full report. An unlinked report is stored in work history but does not publish a visible stage result. Repair a legacy unlinked report with a new stage-linked publication work, attributing the original result without claiming to repeat it; never rewrite another work or journal.
+
+### Continuing across connections and applications
+
+Task access follows the selected project. A new app or connection may read,
+edit, continue and close its tasks. Keep your own identity and begin new owned
+work for continued implementation. To close specifically accepted historical
+work, read `hub_context(work=id)` and use `hub_report` with the exact revision,
+terminal status, factual result and `reconcile={owner,status,reason}`. The owner
+and observed status must match the read. Prior evidence is retained; new
+evidence is additive. The audit retains previous result/checkpoint, original
+owner and current actor. Work/stage/task IDs, claims history and Git snapshots
+stay unchanged; reconciliation never recaptures current source as old completed
+content and does not itself prove a checkpoint.
+
+Active work requires coordination first. MCP cannot interrupt it; the user
+must confirm it in Hub: task Chats, Reconcile work records. Age is not proof of stopped
+execution. Revision conflicts require another read and coordination. Identical
+retries are idempotent, and other open work still defers stage completion.
 
 ### Documents and evidence
 

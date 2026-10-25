@@ -181,6 +181,7 @@ let html = renderTaskTable([entry('root')], [], () => '');
 assert.match(html, /data-task-cell="summary" hidden/);
 assert.match(html, /data-task-cell="children" hidden/);
 assert.match(html, /agent-activity unknown icon-only/);
+assert.match(html, /<button[^>]+data-task-launch-open="root" data-stage-id="" aria-haspopup="dialog"/);
 assert.ok(html.includes('root\\nSummary &lt;unsafe&gt;'));
 for (const id of ['status','progress','estimate','created','updated','actions']) {
  assert.ok(!html.includes(`data-task-cell="${id}" hidden`));

@@ -528,7 +528,7 @@ def compact_write_ack(tool, result):
         return dict(result, run={key: value for key, value in result['run'].items() if key in fields})
     if tool == 'hub_report' and isinstance(result, dict):
         fields = ('work', 'revision', 'status', 'planSync', 'message', 'stageCompletionDeferred',
-                  'gitCheckpoint', 'gitCommit', 'progressHint')
+                  'gitCheckpoint', 'gitCommit', 'progressHint', 'reconciliation')
         return {key: value for key, value in result.items() if key in fields}
     return result
 

@@ -163,7 +163,7 @@ const taskDetailLoader = createTaskDetailLoader({
     }
   },
 });
-let taskTab = "plan",
+let taskTab = location.hash.startsWith("#tasks/") && location.hash.split("/")[3] === "chats" ? "chats" : "plan",
   taskFilter = "all",
   taskTypeFilter = "all",
   taskPriorityFilter = "all",
@@ -243,7 +243,7 @@ function taskStatus(task, stage = null, compact = false) {
   const text = {active: (globalThis.HubI18n?.t?.("app.36adf77adf8b") ?? 'Агент работает'), idle: (globalThis.HubI18n?.t?.("app.44ee3fe42edd") ?? 'Агент не работает'), unknown: (globalThis.HubI18n?.t?.("app.8dd65a3e6de6") ?? 'Агент: нет данных'),waiting:(globalThis.HubI18n?.t?.("app.05ece6ebda35") ?? 'Агент ожидает')}[activity];
   const detail = activity === 'active' ? (globalThis.HubI18n?.t ? globalThis.HubI18n.t("app.29069a39d68a",{v0:(new Set(works.map(w => w.session)).size)}) : `Активных чатов: ${new Set(works.map(w => w.session)).size}. По последним событиям подключённых агентов.`) : activity === 'idle' ? (globalThis.HubI18n?.t?.("app.a5ed711eb426") ?? 'Нет активного исполнителя. Статус плана не изменён.') : (globalThis.HubI18n?.t?.("app.a2fd6a85723b") ?? 'Недостаточно данных подключённых агентов для определения активности.');
   const activityIcon = activity === 'active' ? 'play' : activity === 'idle' ? 'pause' : 'question';
-  return `<span class="task-status-pair">${planStatus(stage || task)}<span class="agent-activity ${activity} ${compact ? 'icon-only' : ''}" title="${escape(text + '. ' + detail)}" aria-label="${escape(text + '. ' + detail)}">${uiIcon(activityIcon)}${compact ? '' : `<span>${text}</span>`}</span></span>`;
+  return `<span class="task-status-pair">${planStatus(stage || task)}<button type="button" class="agent-activity ${activity} ${compact ? 'icon-only' : ''}" data-task-launch-open="${escape(task.id)}" data-stage-id="${escape(stage?.id || '')}" aria-haspopup="dialog" title="${escape(text + '. ' + detail)}" aria-label="${escape(text + '. ' + (globalThis.HubI18n?.locale === 'en' ? (stage ? 'Open stage launch' : 'Open task launch') : (stage ? 'Открыть запуск этапа' : 'Открыть запуск задачи')))}">${uiIcon(activityIcon)}${compact ? '' : `<span>${text}</span>`}</button></span>`;
 }
 const taskLink = (task, stage) =>
   `#tasks/${encodeURIComponent(task.id)}${stage ? "/" + encodeURIComponent(stage) : ""}`;
@@ -941,7 +941,7 @@ function stageDetail(task, stage) {
           .join(
             "",
           )}<p class="caption">Зависимости показывают порядок завершения; независимые части могут внедряться раньше.</p></div>`)
-      : ""),v22:(list(stage.done, true)),v23:(list(stage.remaining)),v24:(stage.evidence?.length ? evidence(stage.evidence) : (globalThis.HubI18n?.t?.("app.5a02cab07ff0") ?? '<p class="caption">Результаты будут добавлены по мере проверки.</p>')),v25:((window.ChatActionsUI?.render(task, stage, activeProject) || "") + (window.TaskLaunchesUI?.render(task, stage, activeProject) || ""))}) : `<section class="panel stage-detail"><div class="title-row"><h2>${escape(stage.title)}</h2></div><div class="stage-detail-actions">${taskStatus(task, stage)}${copyControls(task, stage, false)}<button class="icon-button" data-edit-stage="${escape(stage.id)}" data-task-id="${escape(task.id)}" title="Редактировать этап" aria-label="Редактировать этап">${uiIcon('edit')}</button><button class="icon-button" data-stage-operation="transfer" data-task-id="${escape(task.id)}" data-stage-id="${escape(stage.id)}" title="Перенести этап" aria-label="Перенести этап">${uiIcon('transfer')}</button><button class="icon-button" data-stage-operation="unlink" data-task-id="${escape(task.id)}" data-stage-id="${escape(stage.id)}" title="Отвязать этап" aria-label="Отвязать этап">${uiIcon('unlink')}</button><button class="icon-button" data-stage-operation="delete" data-task-id="${escape(task.id)}" data-stage-id="${escape(stage.id)}" title="Удалить этап из текущего плана, сохранив историю" aria-label="Удалить этап">${uiIcon('delete')}</button></div><p>${escape(stage.summary)}</p>${estimate(stage,true,task.id)}${blockerDetail(stage)}${gitCommits(task, stage)}${stageTransferHistory(stage)}${deps.length
+      : ""),v22:(list(stage.done, true)),v23:(list(stage.remaining)),v24:(stage.evidence?.length ? evidence(stage.evidence) : (globalThis.HubI18n?.t?.("app.5a02cab07ff0") ?? '<p class="caption">Результаты будут добавлены по мере проверки.</p>')),v25:((window.ChatActionsUI?.render(task, stage, activeProject) || ""))}) : `<section class="panel stage-detail"><div class="title-row"><h2>${escape(stage.title)}</h2></div><div class="stage-detail-actions">${taskStatus(task, stage)}${copyControls(task, stage, false)}<button class="icon-button" data-edit-stage="${escape(stage.id)}" data-task-id="${escape(task.id)}" title="Редактировать этап" aria-label="Редактировать этап">${uiIcon('edit')}</button><button class="icon-button" data-stage-operation="transfer" data-task-id="${escape(task.id)}" data-stage-id="${escape(stage.id)}" title="Перенести этап" aria-label="Перенести этап">${uiIcon('transfer')}</button><button class="icon-button" data-stage-operation="unlink" data-task-id="${escape(task.id)}" data-stage-id="${escape(stage.id)}" title="Отвязать этап" aria-label="Отвязать этап">${uiIcon('unlink')}</button><button class="icon-button" data-stage-operation="delete" data-task-id="${escape(task.id)}" data-stage-id="${escape(stage.id)}" title="Удалить этап из текущего плана, сохранив историю" aria-label="Удалить этап">${uiIcon('delete')}</button></div><p>${escape(stage.summary)}</p>${estimate(stage,true,task.id)}${blockerDetail(stage)}${gitCommits(task, stage)}${stageTransferHistory(stage)}${deps.length
       ? (globalThis.HubI18n?.t ? globalThis.HubI18n.t("app.499d700a4876",{v0:(deps
           .map((id) => {
             const dependency = task.stages.find((s) => s.id === id);
@@ -957,7 +957,7 @@ function stageDetail(task, stage) {
           .join(
             "",
           )}<p class="caption">Зависимости показывают порядок завершения; независимые части могут внедряться раньше.</p></div>`)
-      : ""}<div class="detail-section"><h3>Реализовано</h3>${list(stage.done, true)}</div><div class="detail-section"><h3>До завершения</h3>${list(stage.remaining)}</div><div class="detail-section"><h3>Доказательства и исходники</h3>${stage.evidence?.length ? evidence(stage.evidence) : (globalThis.HubI18n?.t?.("app.5a02cab07ff0") ?? '<p class="caption">Результаты будут добавлены по мере проверки.</p>')}</div>${window.ChatActionsUI?.render(task, stage, activeProject) || ""}${window.TaskLaunchesUI?.render(task, stage, activeProject) || ""}</section>`);
+      : ""}<div class="detail-section"><h3>Реализовано</h3>${list(stage.done, true)}</div><div class="detail-section"><h3>До завершения</h3>${list(stage.remaining)}</div><div class="detail-section"><h3>Доказательства и исходники</h3>${stage.evidence?.length ? evidence(stage.evidence) : (globalThis.HubI18n?.t?.("app.5a02cab07ff0") ?? '<p class="caption">Результаты будут добавлены по мере проверки.</p>')}</div>${window.ChatActionsUI?.render(task, stage, activeProject) || ""}</section>`);
 }
 function historyPage() {
   return (globalThis.HubI18n?.t ? globalThis.HubI18n.t("app.ee76f1e88f14",{v0:(title((globalThis.HubI18n?.t?.("app.4611f243b206") ?? "Журнал проекта"), (globalThis.HubI18n?.t?.("app.5143a08843c2") ?? "История разработки"), (globalThis.HubI18n?.t?.("app.8a7fe9bd38e0") ?? "События сохраняются между сессиями. Время ниже — время записи в журнал, с локальным часовым поясом браузера."))),v1:(state.tasks.map((t) => `<option value="${escape(t.id)}" ${historyTask === t.id ? "selected" : ""}>${escape(t.title)}</option>`).join("")),v2:(historyKind === "task" ? "selected" : ""),v3:(historyKind === "check" ? "selected" : ""),v4:(historyKind === "decision" ? "selected" : ""),v5:(historyKind === "finding" ? "selected" : ""),v6:(historyKind === "git" ? "selected" : ""),v7:(state.eventCount),v8:(historyRows()),v9:(historyNext ? "" : "hidden"),v10:(uiIcon('clock'))}) : `${title((globalThis.HubI18n?.t?.("app.4611f243b206") ?? "Журнал проекта"), (globalThis.HubI18n?.t?.("app.5143a08843c2") ?? "История разработки"), (globalThis.HubI18n?.t?.("app.8a7fe9bd38e0") ?? "События сохраняются между сессиями. Время ниже — время записи в журнал, с локальным часовым поясом браузера."))}<div class="toolbar"><select id="history-task" aria-label="Задача"><option value="">Все задачи</option>${state.tasks.map((t) => `<option value="${escape(t.id)}" ${historyTask === t.id ? "selected" : ""}>${escape(t.title)}</option>`).join("")}</select><select id="history-kind" aria-label="Тип события"><option value="">Все события</option><option value="task" ${historyKind === "task" ? "selected" : ""}>Изменения задач</option><option value="check" ${historyKind === "check" ? "selected" : ""}>Проверки</option><option value="decision" ${historyKind === "decision" ? "selected" : ""}>Решения</option><option value="finding" ${historyKind === "finding" ? "selected" : ""}>Наблюдения</option><option value="git" ${historyKind === "git" ? "selected" : ""}>Git</option></select><span class="caption">Всего событий в ленте: ${state.eventCount}</span></div><div id="history-list">${historyRows()}</div><button class="icon-button" id="history-more" title="Более ранние события" aria-label="Более ранние события" ${historyNext ? "" : "hidden"}>${uiIcon('clock')}</button><div class="notice">Более ранняя документация ещё не перенесена. Её импорт сохранит исходные даты, происхождение и отметку актуальности; он не будет выдавать старые записи за новые события.</div>`);
@@ -1190,8 +1190,18 @@ function chatsHistoryView() {
     (chatsError?'<p role="alert">'+escape(chatsError)+(globalThis.HubI18n?.t?.("app.1cc60d66f193") ?? '</p><button class="icon-button" data-chats-retry title="Повторить загрузку" aria-label="Повторить загрузку">')+uiIcon('refresh')+'</button>':'')+
     (chatsData?.next != null?(globalThis.HubI18n?.t?.("app.c47ae8612b44") ?? '<button class="icon-button" data-chats-more title="Показать ещё чаты" aria-label="Показать ещё чаты" ')+(chatsLoading?'disabled':'')+'>'+uiIcon('plus')+'</button>':'');
 }
+function openTaskChats(task) {
+  taskTab = 'chats';
+  const target = '#tasks/' + encodeURIComponent(task) + '//chats';
+  if (location.hash === target) render();
+  else location.hash = target;
+}
 function taskChats(task) {
-  return (globalThis.HubI18n?.t?.("app.6b66cab9fbe4") ?? '<section class="diagnostic-section task-chats"><div class="section-head"><h2>Чаты задачи</h2><button class="icon-button" data-chats-retry title="Обновить чаты" aria-label="Обновить чаты">')+uiIcon('refresh')+(globalThis.HubI18n?.t?.("app.45f803221317") ?? '</button></div><p class="caption">Обсуждение, планирование и работа по сохраненным связям задачи. Участники сгруппированы по родительскому чату.</p><div id="chats-history-content">')+chatsHistoryView()+'</div></section>';
+  return (window.WorkReconciliationUI?.render(task, activeProject) || '') + taskChatsContent(task);
+}
+window.addEventListener?.('hub-work-reconciled', () => { chatsViewKey = ''; void refresh(); });
+function taskChatsContent(task) {
+  return (globalThis.HubI18n?.t?.("app.6b66cab9fbe4") ?? '<section class="diagnostic-section task-chats"><div class="section-head"><h2>Чаты задачи</h2><button class="icon-button" data-chats-retry title="Обновить чаты" aria-label="Обновить чаты">')+uiIcon('refresh')+(globalThis.HubI18n?.t?.("app.45f803221317") ?? '</button></div><p class="caption">Обсуждение, планирование и работа по сохраненным связям задачи. Участники сгруппированы по родительскому чату.</p><div id="chats-history-content">')+chatsHistoryView()+'</div></section>'+(window.TaskLaunchesUI?.renderHistory(task, activeProject) || '');
 }
 async function loadChats(more = false) {
   const context = chatsContext(), key = chatsKey(context);
@@ -1461,7 +1471,7 @@ function render({ preserveScroll = true, background = false, localeChange = fals
   window.backupStatus?.afterRender();
   window.KnowledgeUI?.afterRender({project:activeProject,projectApi,showError,route});
   window.ChatActionsUI?.afterRender({project:activeProject,route,render,state,refresh});
-  window.TaskLaunchesUI?.afterRender({project:activeProject,route,render,state,refresh,renderEvidence:evidence});
+  window.TaskLaunchesUI?.afterRender({project:activeProject,route,render,state,refresh,renderEvidence:evidence,openTaskChats});
   updateFreshness();
   if (typeof syncChatsView === 'function') syncChatsView();
 }
@@ -1685,7 +1695,7 @@ window.addEventListener("hashchange", event => {
     historyLoading = true;
     historyError = "";
   }
-  if (page === "tasks") taskTab = "plan";
+  if (page === "tasks") taskTab = route()[3] === "chats" ? "chats" : "plan";
   render({ preserveScroll: sameTask });
   if (state && page === "history") loadHistory();
   if (state && page === "git") { gitData = null; loadGit(); }

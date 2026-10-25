@@ -54,6 +54,30 @@ class AgentLaunchContractsTests(unittest.TestCase):
         return dict(project=binding['project'], bindingId=binding['id'],
                     bindingRevision=binding['revision'], projectScope=binding['scope'])
 
+    def test_creation_binding_is_the_default_even_when_other_routes_come_first(self):
+        routes = [dict(connection='other', bindingId='other-app'),
+                  dict(connection=self.connection['binding'], bindingId='other-workspace'),
+                  dict(connection=self.connection['binding'], bindingId=self.binding['id'])]
+        self.assertEqual(self.launches.preferred_route(self.binding['project'], self.task, routes, []),
+                         dict(connection=self.connection['binding'], bindingId=self.binding['id']))
+        snapshot = self.launches.task_state(self.binding['project'], self.task)
+        self.assertEqual(snapshot['preferredRoute'],
+                         dict(connection=self.connection['binding'], bindingId=self.binding['id']))
+
+    def test_creator_application_does_not_guess_between_known_workspaces(self):
+        second = ProjectBindings(self.registry).execute(self.connection['binding'], dict(
+            action='resolve', project=self.binding['project'], scope=dict(kind='project', nativeRef='another-project'),
+            requestId=uuid.uuid4().hex))['binding']
+        call(self.registry, self.connection['token'], 'hub_context', dict(session='task-owner', **self.selected(second)))
+        routes = [dict(connection=self.connection['binding'], bindingId=binding['id'])
+                  for binding in (self.binding, second)]
+        self.assertEqual(self.launches.preferred_route(self.binding['project'], self.task, routes, []),
+                         dict(connection=self.connection['binding']))
+
+    def test_unavailable_creation_binding_is_not_used_as_a_default(self):
+        routes = [dict(connection='unrelated', bindingId='unrelated-workspace')]
+        self.assertIsNone(self.launches.preferred_route(self.binding['project'], self.task, routes, []))
+
     def seed_launch(self, *, task=None, status='completed', native_id='native-chat',
                     binding=None, request_id=None, result=None, connection=None):
         binding = binding or self.binding

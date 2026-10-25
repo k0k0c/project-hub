@@ -8,8 +8,9 @@ import zipfile
 
 ROOT = Path(__file__).resolve().parents[1]
 RUNTIME = (
+    'work_reconciliation_api.py',
     'outbound_http.py', 'chatgpt_auth.py',
-    'project_portal.py', 'hub_launcher.py', 'hub_lifecycle.py', 'hub_desktop.py', 'hub_tray.py', 'hub_instance.py', 'hub_source.py', 'hub_update.py', 'hub_import.py', 'project_registry.py', 'project_resolution.py', 'hub_storage_schema.py', 'ui_preferences.py',
+    'project_portal.py', 'setup_wizard.py', 'hub_launcher.py', 'hub_lifecycle.py', 'hub_desktop.py', 'hub_tray.py', 'hub_instance.py', 'hub_source.py', 'hub_update.py', 'hub_import.py', 'project_registry.py', 'project_resolution.py', 'hub_storage_schema.py', 'ui_preferences.py',
     'plugin_api.py', 'agent_api.py', 'agent_bindings.py', 'agent_runtime.py', 'agent_contracts.py', 'agent_instructions.py', 'connection_capabilities.py', 'native_chats.py', 'storage_preparation.py', 'agent_sdk.py', 'hub_cli.py', 'native_onboarding.py', 'native_mcp_setup.py', 'mcp_stdio_client.py', 'provider_runtime.py', 'project_workspaces.py', 'mcp_transport.py', 'task_transfer.py', 'stage_operations.py', 'task_progress.py',
     'storage_merge.py', 'storage_operations.py', 'storage_application.py', 'windows_storage_broker.py', 'local_files.py',
     'agent-workflow.md', 'native_instruction_store.py', 'native_project_rule.py', 'project_bindings.py', 'agent_launches.py',

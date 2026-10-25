@@ -1,4 +1,12 @@
-.panel.task-launches { border: 1px solid var(--line); border-top: 2px solid var(--accent); border-radius: 6px; margin-top: 18px; padding: 18px; background:var(--panel); min-width:0; }
+.task-launch-dialog { width: min(780px, calc(100vw - 24px)); max-height: calc(100dvh - 32px); box-sizing: border-box; padding: 0; border: 1px solid var(--line); border-top: 2px solid var(--accent); border-radius: 6px; background: var(--panel); color: var(--text); overflow: auto; }
+.task-launch-dialog::backdrop { background: #0009; }
+.task-launch-close { position: sticky; top: 10px; float: right; margin: 10px 10px 0 0; z-index: 1; }
+.panel.task-launches { border: 0; margin: 0; padding: 22px; background:var(--panel); min-width:0; box-shadow: none; }
+.task-launches .section-head { padding-right: 30px; }
+.task-launch-scope { overflow-wrap: anywhere; }
+button.agent-activity[data-task-launch-open] { cursor: pointer; font-family: inherit; }
+button.agent-activity[data-task-launch-open]:hover { border-color: var(--accent); }
+button.agent-activity[data-task-launch-open]:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 .task-launches .section-head h2 { margin-top:0; }
 .task-launches form { display: grid; gap: 12px; max-width: 720px; }
 .task-launches label, .task-launches fieldset { display: grid; gap: 6px; }

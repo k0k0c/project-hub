@@ -93,7 +93,7 @@ assert(html.includes('1 chats working'));assert(html.includes('1 waiting'));asse
 assert.equal(b.calls.length,0);
 """)
 
-    def test_task_activity_and_estimates_have_no_execution_triggers_in_each_language(self):
+    def test_task_launch_is_explicit_and_estimates_remain_read_only_in_each_language(self):
         self.run_ui(r"""
 const b=browser('ru'),g=b.ctx,source=fs.readFileSync(web+'/app.js','utf8');
 g.escape=value=>String(value??'').replaceAll('<','&lt;').replaceAll('>','&gt;');g.uiIcon=()=>'';g.planStatus=()=>'<span>Active</span>';g.date=value=>value;
@@ -102,10 +102,16 @@ const code=source.slice(source.indexOf('function taskStatus('),source.indexOf('c
 vm.runInContext(code,g);
 for(const language of ['ru','en']){
  g.HubI18n.apply(language);const task={id:'task',status:'active',agentActivity:{state:'active'},currentWorks:[{session:'a'}],estimate:{percentLow:20,percentHigh:40,hoursLow:1,hoursHigh:2,note:'Evidence <note>'}};
- for(const markup of [g.taskStatus(task),g.estimate(task),g.estimate(task,true)]){
+ const status=g.taskStatus(task);
+ assert(status.includes('<button type="button"'));
+ assert(status.includes('data-task-launch-open="task"'));
+ assert(status.includes('aria-haspopup="dialog"'));
+ assert(!/data-agent-dialog|data-agent-intent|on(?:click|focus|mouseover)=/.test(status));
+ for(const markup of [g.estimate(task),g.estimate(task,true)]){
   assert(!/<button|data-agent-dialog|data-agent-intent|tabindex/.test(markup));assert(!markup.includes('<note>'));
  }
 }
+assert.equal(b.calls.length,0,'rendering status and estimates must not dispatch execution');
 """)
 
     def test_provider_choices_are_scoped_research_controls(self):

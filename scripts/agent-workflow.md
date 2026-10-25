@@ -102,6 +102,31 @@ its designated knowledge destination/history and attaches no task source.
 
 Retry uncertain writes with identical operation and request ID. After a confirmed revision conflict, reread before editing. Hub never blocks authorized user work: when identity, transport or storage is unavailable, keep the result and disclose the recording gap. A Hub project may have no local code; tasks, settings, history, documents and uploads still work. Local source import, Git and language-server analysis require an explicitly registered accessible workspace. Never invent one.
 
+## Continuing work across applications
+
+Project access authorizes task, stage and metadata operations regardless of the
+application or connection that created them. Keep your own current identity;
+never impersonate an earlier actor or change a work's owner to bypass a check.
+Start new owned work to continue implementation in another chat or application.
+
+For an accepted historical work that prevents stage completion, read
+`hub_context(work=...)` in its project. Explicitly reconcile with `hub_report`
+using its current `revision`, terminal `status=done` or `cancelled`, a factual
+`result`, and `reconcile={owner, status, reason}` copied from the observed work
+with the reason for closure. Ordinary reports remain owner-only. Reconciliation
+retains the original owner, IDs, claims history, prior results/evidence and Git
+boundary, and audits the current actor. New evidence is additive. It never
+captures current source bytes as the historical completed result or proves a
+Git checkpoint. Verify planSync and any separate checkpoint outcome.
+
+For active work, coordinate with its worker first. MCP cannot interrupt it;
+the user must explicitly confirm that observed work in Hub: task Chats,
+Reconcile work records. The local user action is audited separately.
+Age or a disconnected app is not proof that execution stopped. A concurrent
+report invalidates the revision: reread and coordinate, never blindly retry.
+Identical retries retain the first receipt. Other open work still defers stage
+completion; reconcile only the specifically accepted or cancelled records.
+
 ## Requests launched from Hub
 
 Only declared and configured HTTP/MCP client-control capabilities permit Hub to launch or continue native chats. Reading rules does not itself grant control. The typed envelope carries requestId, connection, canonical project, binding revision, native scope, operation, task/stage or knowledge object, input revisions and result destination. Read it using hub_launch, validate current binding/scope and acknowledge before work. Retry acknowledgements/results idempotently with request IDs. Never substitute a project based on the receiving chat's default.

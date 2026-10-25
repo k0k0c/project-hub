@@ -10,7 +10,7 @@ HARNESS = r'''
 const fs=require('node:fs'),vm=require('node:vm'),assert=require('node:assert/strict');
 const source=fs.readFileSync(process.argv[1],'utf8');
 const start=source.indexOf('function diagnosticAge('), end=source.indexOf('function archiveView(');
-const ctx={URLSearchParams,Set,Promise,Date,JSON,Math,console,activeProject:'owner',taskTab:'chats',diagnosticSearch:'',
+const ctx={URLSearchParams,Set,Promise,Date,JSON,Math,console,window:{},activeProject:'owner',taskTab:'chats',diagnosticSearch:'',
  state:{tasks:[]},location:{hash:'#coordination'},route:()=>['coordination'],render(){},
  escape:s=>String(s??'').replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;'),
  date:s=>s,taskLink:(t,stage)=>'#tasks/'+encodeURIComponent(t.id)+(stage?'/'+encodeURIComponent(stage):''),uiIcon:()=>'<svg/>',agentName:s=>s.title||s.id,codexSessionLink:(resource,label)=>resource?.openUri?`<a data-session="${resource.nativeId}" href="${resource.openUri}">${label}</a>`:`<strong>${label}</strong>`,
@@ -122,6 +122,16 @@ const html=ctx.chatsHistoryView();assert.equal((html.match(/data-key="chat-root"
 ctx.__setChats('["owner","task-a",""]',{task:'task-a',sessions:[],next:null,warnings:[]});
 ctx.route=()=>['tasks','task-a'];ctx.__setTab('chats');const html=ctx.taskChats({id:'task-a',title:'Alpha'});
 assert.match(html,/Чаты задачи/);assert.match(html,/Сохраненных связей с чатами пока нет/);assert.match(html,/data-chats-retry/);
+''')
+
+    def test_task_chats_include_launch_history_and_receive_task_navigation(self):
+        self.run_node(r'''
+ctx.window.TaskLaunchesUI={renderHistory:(task,project)=>{assert.equal(task.id,'task-a');assert.equal(project,'owner');return '<section data-launch-history>Launch history</section>'}};
+ctx.__setChats('["owner","task-a",""]',{task:'task-a',sessions:[],next:null,warnings:[]});
+ctx.route=()=>['tasks','task-a'];assert.match(ctx.taskChats({id:'task-a'}),/data-launch-history/);
+ctx.__setTab('plan');ctx.location.hash='#tasks/task-a';ctx.openTaskChats('task-a');assert.equal(ctx.chatsContext().task,'task-a');
+assert.equal(ctx.location.hash,'#tasks/task-a//chats','refresh must retain the Chats destination');
+ctx.route=()=>['overview'];ctx.openTaskChats('task-b');assert.equal(ctx.location.hash,'#tasks/task-b//chats');
 ''')
 
     def test_load_chats_discards_response_after_context_changes(self):

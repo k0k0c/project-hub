@@ -92,6 +92,37 @@ identity and preserves its history. Client, model and provider are separate:
 one client can use several models; a provider key normally accesses the
 provider's API account or project, with the model selected per request.
 
+### Continue a task in another application
+
+Any connection with access to the project can read, edit, continue and complete
+its tasks. The creating application or an earlier connection does not own the
+task. Each worker records its own contribution separately so simultaneous work
+and its source boundaries remain visible.
+
+If a stage still has historical work awaiting acceptance, ask your agent to
+reconcile the specific accepted records in that project. It reads their current
+revisions, records the acceptance reason and closes them under its own identity.
+The original worker, identifiers, previous results, evidence, claims history and
+Git boundaries remain in the audit. Repeating the same request does not duplicate
+the result. Other unfinished work continues to keep the stage open.
+Existing evidence remains in the original work, its audit and earlier stage
+reports. The new reconciliation report publishes only newly supplied evidence,
+so an archived source cannot prevent recording acceptance.
+
+Open the task's **Chats** tab and select **Reconcile work records** to inspect
+open records, choose the accepted or cancelled outcome and explain your decision.
+Coordinate with an active worker before closing its contribution. Interrupting
+active work requires the additional confirmation in this dialog; a last-seen timestamp does
+not establish whether it is still executing. A concurrent update requires a new
+read and agreement. Reconciliation does not establish a missing Git checkpoint:
+that outcome remains separately visible and may need its own verification.
+
+For agents, the standard path is `hub_context(work=...)`, then `hub_report` with
+the returned revision, terminal status and `reconcile={owner,status,reason}`.
+MCP reconciliation accepts only another actor's waiting work. Active work
+requires the local user dialog; an owner uses an ordinary report. Begin new
+owned work to continue implementation.
+
 Ordinary task execution and continuation stay in the external client. Hub sends
 typed project requests through a configured native HTTP/MCP control interface
 when the client supports project routing. Their acknowledgement and results use

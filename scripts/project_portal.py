@@ -1722,6 +1722,14 @@ class Handler(BaseHTTPRequestHandler):
                     return self.reply(200, read(self.server.registry))
                 except PreferenceError as error:
                     return self.reply(error.status, error.body)
+            if route == '/api/setup-wizard':
+                from setup_wizard import read, SetupWizardError
+                if not self.server.registry:
+                    return self.reply(404, {'error': 'Multi-project mode required'})
+                try:
+                    return self.reply(200, read(self.server.registry))
+                except SetupWizardError as error:
+                    return self.reply(error.status, {'error': error.code, 'message': str(error)})
             if parsed.path == '/mcp':
                 if not self.local_access(origin=True):
                     return self.reply(403, {'error':'Local same-origin access only'})
@@ -1744,6 +1752,16 @@ class Handler(BaseHTTPRequestHandler):
                         offset=query.get('offset',[0])[0],limit=query.get('limit',[20])[0]))
                 except BindingError as error:
                     return self.reply(error.status,error.body)
+            if route == '/api/work-reconciliation':
+                if not self.local_access(origin=True):
+                    return self.reply(403, {'error': 'Local same-origin access only'})
+                from work_reconciliation_api import read
+                from hub_core import HubError
+                try:
+                    return self.reply(200, read(self.server.registry, query.get('project',[''])[0],
+                        query.get('task',[''])[0], int(query.get('offset',['0'])[0])))
+                except HubError as error:
+                    return self.reply(409, error.body)
             if route == '/api/task-launches':
                 if not self.server.registry:return self.reply(404,{'error':'Multi-project mode required'})
                 from agent_bindings import BindingError
@@ -2073,6 +2091,7 @@ class Handler(BaseHTTPRequestHandler):
             assets.update({f'/{name}': name for name in ('asset-loader.js', 'live-ui.js', 'task-table.js', 'task-table.css', 'ui-state.js', 'task-editor.js', 'task-editor.css')})
             assets.update({f'/{name}': name for name in ('settings.js', 'settings.css', 'agent-providers.js',
                 'agent-providers.css', 'runtime-status.js', 'runtime-status.css', 'local-files.js')})
+            assets.update({f'/{name}': name for name in ('setup-wizard.js', 'setup-wizard.css')})
             assets.update({f'/{name}': name for name in ('i18n.js', 'locale-catalog.js')})
             assets.update({f'/{name}': name for name in ('backups.js', 'backups.css', 'backup-status.js')})
             assets.update({f'/{name}': name for name in ('projects.js', 'projects.css')})
@@ -2080,7 +2099,7 @@ class Handler(BaseHTTPRequestHandler):
             assets.update({f'/{name}': name for name in ('storage.js', 'subsystems.js', 'workspaces.js')})
             assets.update({f'/{name}': name for name in ('chat-actions.js', 'chat-actions.css')})
             assets.update({f'/{name}': name for name in ('task-launches.js', 'task-launches.css')})
-            assets.update({f'/{name}': name for name in ('checks.js', 'checks.css')})
+            assets.update({f'/{name}': name for name in ('checks.js', 'checks.css', 'work-reconciliation.js')})
             assets.update({f'/{name}': name for name in ('images.js', 'images.css')})
             assets.update({f'/{name}': name for name in ('knowledge.js', 'knowledge.css', 'documentation.js', 'documentation.css')})
             assets.update({f'/{name}': name for name in ('knowledge-research.js', 'knowledge-research.css')})
@@ -2154,6 +2173,14 @@ class Handler(BaseHTTPRequestHandler):
                     base='http://127.0.0.1:'+str(self.server.server_port))
                 return self.reply(status,b'' if body is None else body)
             body=json.loads(raw)
+            if route == '/api/v1/setup-wizard':
+                from setup_wizard import change, SetupWizardError
+                if not self.server.registry:
+                    return self.reply(404, {'error': 'Multi-project mode required'})
+                try:
+                    return self.reply(200, change(self.server.registry, body))
+                except SetupWizardError as error:
+                    return self.reply(error.status, {'error': error.code, 'message': str(error)})
             if route in ('/api/runtime', '/api/v1/runtime'):
                 from hub_desktop import update_runtime, DesktopError
                 try:
@@ -2215,6 +2242,13 @@ class Handler(BaseHTTPRequestHandler):
                     return self.reply(error.status,error.body)
                 except HubError as error:
                     return self.reply(423 if error.body.get('error') in ('backup_in_progress', 'storage_operation_in_progress') else 409,error.body)
+            if route == '/api/v1/work-reconciliation':
+                from work_reconciliation_api import apply
+                from hub_core import HubError
+                try:
+                    return self.reply(200, apply(self.server.registry, parse_qs(urlparse(self.path).query).get('project',[''])[0], body))
+                except HubError as error:
+                    return self.reply(409, error.body)
             if route == '/api/v1/workspaces':
                 # Each workspace edit is checked against its explicit project revision.
                 from project_workspaces import Workspaces, WorkspaceError, installed_runtime_roots
